@@ -22,32 +22,27 @@ Plan first.  Structure work into discreet tasks, according to well-defined accep
       Started, Rationale, Design, TODO, License, Author)
 - [ ] `LICENSE` file exists and matches the README
 - [ ] `REPO_POLICIES.md` exists and version date is current — fetch from
-      `https://git.eeqj.de/sneak/prompts/raw/branch/main/prompts/REPO_POLICIES.md`
+      `https://github.com/kjannette/LLM_DEV_PROMPTS/blob/master/REPO_POLICIES.md`
 - [ ] `.gitignore` is comprehensive (OS, editor, language artifacts, secrets) —
-      fetch from `https://git.eeqj.de/sneak/prompts/raw/branch/main/.gitignore`
+      fetch from `https://github.com/kjannette/LLM_DEV_PROMPTS/blob/master/.gitignore`
       if missing
-- [ ] `.editorconfig` exists — fetch from
-      `https://git.eeqj.de/sneak/prompts/raw/branch/main/.editorconfig`
 - [ ] `Dockerfile` and `.dockerignore` exist; Dockerfile runs `make check` as a
       build step — fetch `.dockerignore` from
-      `https://git.eeqj.de/sneak/prompts/raw/branch/main/.dockerignore`
-- [ ] Gitea Actions workflow in `.gitea/workflows/` runs `docker build .` on
-      push — reference
-      `https://git.eeqj.de/sneak/prompts/raw/branch/main/.gitea/workflows/check.yml`
+      `https://github.com/kjannette/LLM_DEV_PROMPTS/blob/master/.dockerignore`
 - [ ] Language-specific config:
     - [ ] Go: `go.mod`, `go.sum`, `.golangci.yml` (fetch from
-          `https://git.eeqj.de/sneak/prompts/raw/branch/main/.golangci.yml`)
+          `https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/.golangci.yml`)
     - [ ] JS: `package.json`, `yarn.lock`, `.prettierrc`, `.prettierignore`
           (fetch from
-          `https://git.eeqj.de/sneak/prompts/raw/branch/main/.prettierrc` and
-          `https://git.eeqj.de/sneak/prompts/raw/branch/main/.prettierignore`)
+          `https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/.prettierrc` and
+          `https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/.prettierignore`)
     - [ ] Python: `pyproject.toml`
     - [ ] Docs/writing: `.prettierrc`, `.prettierignore` (same URLs as above)
 
 # Makefile
 
 - [ ] `Makefile` exists in root — reference
-      `https://git.eeqj.de/sneak/prompts/raw/branch/main/Makefile`
+      `https://github.com/kjannette/LLM_DEV_PROMPTS/blob/master/Makefile`
 - [ ] Has targets: `test`, `lint`, `fmt`, `fmt-check`, `check`, `docker`,
       `hooks`
 - [ ] `make check` does not modify any files in the repo

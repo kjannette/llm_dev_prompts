@@ -19,3 +19,8 @@ node_modules/
 .env.*
 *.pem
 *.key
+
+# Prompts
+prompts/
+*prompts
+prompts*

@@ -10,7 +10,7 @@ Run from within the repo you want to bring up to standards. Clone the prompts re
 
 ```bash
 export TD="$(mktemp -d)"
-git clone --depth 1 https://git.eeqj.de/sneak/prompts.git "$TD"
+git clone --depth 1 https://github.com/kjannette/LLM_DEV_PROMPTS.git "$TD"
 ```
 
 **Repository structure and policies:**
@@ -54,7 +54,7 @@ prompts repo once, then run both commands in order.
 
 ```bash
 export TD="$(mktemp -d)"
-git clone --depth 1 https://git.eeqj.de/sneak/prompts.git "$TD"
+git clone --depth 1 https://github.com/kjannette/LLM_DEV_PROMPTS.git "$TD"
 ```
 
 **Repository scaffolding:**
@@ -92,7 +92,7 @@ separate commit."
 ## Getting Started
 
 ```bash
-git clone https://git.eeqj.de/sneak/prompts.git
+git clone https://github.com/kjannette/LLM_DEV_PROMPTS.git
 cd prompts
 ```
 
@@ -111,31 +111,6 @@ The repository is a collection of Markdown files organized in the `prompts/`
 subdirectory. Each file contains one or more related prompts or policy
 documents. There is no build step or runtime component; the prompts are consumed
 by copying them into other projects or referencing them directly.
-
-## Template Repos
-
-These template repositories implement the policies defined in this repo and
-serve as starting points for new projects. They must be kept in sync when
-policies change.
-
-- **[template-app-go](https://git.eeqj.de/sneak/template-app-go)** — Go HTTP
-  server template (Uber fx, chi, SQLite, session auth, Prometheus metrics)
-- **[template-app-js](https://git.eeqj.de/sneak/template-app-js)** — JavaScript
-  SPA template (Vite, Tailwind CSS v4, nginx Docker deployment)
-- **[template-app-python](https://git.eeqj.de/sneak/template-app-python)** —
-  Python web application template (FastAPI, uvicorn, pytest, black, ruff)
-
-When updating policies in this repo, also update the template repos to match
-(Makefile targets, Dockerfile conventions, CI workflows, required files, etc.).
-
-## See Also
-
-- **[clawpub](https://git.eeqj.de/sneak/clawpub)** — Real-world examples,
-  rationale, and operational lessons from applying these policies with an
-  [OpenClaw](https://github.com/openclaw/openclaw) AI agent. Includes detailed
-  documentation on how the interlocking check system (CI → Docker → Makefile →
-  tests/lint/fmt) works in practice, why checklists complement prose policies,
-  and failure stories from production use.
 
 ## TODO
 

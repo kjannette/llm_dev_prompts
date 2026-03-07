@@ -5,10 +5,10 @@ last_modified: 2026-02-22
 
 Use this checklist when creating a new repository from scratch. Follow the steps
 in order. Full policies are at
-`https://git.eeqj.de/sneak/prompts/raw/branch/main/prompts/REPO_POLICIES.md`.
+`https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/prompts/REPO_POLICIES.md`.
 
 Template files can be fetched from:
-`https://git.eeqj.de/sneak/prompts/raw/branch/main/<path>`
+`https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/<path>`
 
 # 1. Initialize
 
@@ -34,24 +34,24 @@ Template files can be fetched from:
 ## Fetch Template Files
 
 - [ ] `.gitignore` — fetch from
-      `https://git.eeqj.de/sneak/prompts/raw/branch/main/.gitignore`, extend for
+      `https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/.gitignore`, extend for
       language-specific artifacts
 - [ ] `.editorconfig` — fetch from
-      `https://git.eeqj.de/sneak/prompts/raw/branch/main/.editorconfig`
+      `https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/.editorconfig`
 - [ ] `Makefile` — fetch from
-      `https://git.eeqj.de/sneak/prompts/raw/branch/main/Makefile`, adapt
+      `https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/Makefile`, adapt
       targets for the project's language and tools
 - [ ] For JS/docs repos: `.prettierrc` and `.prettierignore` — fetch from
-      `https://git.eeqj.de/sneak/prompts/raw/branch/main/.prettierrc` and
-      `https://git.eeqj.de/sneak/prompts/raw/branch/main/.prettierignore`
+      `https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/.prettierrc` and
+      `https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/.prettierignore`
 
 ## Create Project Files
 
 - [ ] `LICENSE` file matching the chosen license
 - [ ] `REPO_POLICIES.md` — fetch from
-      `https://git.eeqj.de/sneak/prompts/raw/branch/main/prompts/REPO_POLICIES.md`
+      `https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/prompts/REPO_POLICIES.md`
 - [ ] `Dockerfile` and `.dockerignore` — fetch `.dockerignore` from
-      `https://git.eeqj.de/sneak/prompts/raw/branch/main/.dockerignore`
+      `https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/.dockerignore`
     - All Dockerfiles must run `make check` as a build step
     - Server: also builds and runs the application
     - Non-server: brings up dev environment and runs `make check`

@@ -15,7 +15,7 @@ last_modified: 2026-02-22
 5.  At a minimum, both `npm run test`/`npm run build` should work (complete the appropriate scripts in `package.json`). However, prefer `make test` and `make build` instead —
 
 6. The Makefile is authoritative on how to interact with the repo. See
-   [Repository Policies](https://git.eeqj.de/sneak/prompts/raw/branch/main/prompts/REPO_POLICIES.md) for details.
+   [Repository Policies](https://github.com/kjannette/LLM_DEV_PROMPTS/blob/master/REPO_POLICIES.md) for details.
 
 # Author
 

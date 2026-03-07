@@ -17,7 +17,7 @@ last_modified: 2026-02-22
 # Author
 
 [@sjdev](https://sjdev.co)
-&lt;[sj@sjdev.co](mailto:sneak@sjdev.berlin)&gt;
+&lt;[sj@sjdev.co](mailto:sj@sjdev.berlin)&gt;
 
 # License
 

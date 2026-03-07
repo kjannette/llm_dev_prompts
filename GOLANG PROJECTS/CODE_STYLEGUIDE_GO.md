@@ -71,7 +71,7 @@ last_modified: 2026-02-22
 1.  Avoid obvious footguns. For example, use range instead of for loops for
     iterating.
 
-1.  Use `log/slog` for structured logging. Import `sneak.berlin/go/simplelog`
+1.  Use `log/slog` for structured logging. Import `sjdev.co/go/simplelog`
     for sensible defaults. Example:
 
     ```go
@@ -79,7 +79,7 @@ last_modified: 2026-02-22
 
     import (
         "log/slog"
-        _ "sneak.berlin/go/simplelog"
+        _ "sjdev.co/go/simplelog"
     )
 
     func main() {
@@ -106,7 +106,7 @@ last_modified: 2026-02-22
     should fail if linting doesn't pass.
 
 1.  Every repo must have a `Makefile`. See
-    [Repository Policies](https://git.eeqj.de/sneak/prompts/raw/branch/main/prompts/REPO_POLICIES.md)
+    [Repository Policies](https://github.com/kjannette/LLM_DEV_PROMPTS/blob/master/REPO_POLICIES.md)
     for required targets and conventions.
 
 1.  If you are writing a single-module library, `.go` files are okay in the repo
@@ -583,7 +583,7 @@ last_modified: 2026-02-22
 # Author
 
 [@sjdev](https://sjdev.co)
-&lt;[sj@sjdev.co(mailto:sneak@sjdev.berlin)&gt;
+&lt;[sj@sjdev.co(mailto:sj@sjdev.berlin)&gt;
 
 # License
 
