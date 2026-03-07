@@ -1235,7 +1235,7 @@ if viper.GetString("METRICS_USERNAME") != "" {
 
 # Author
 
-[@sjdev](https://sjdev.co) <[sj@sjdev.co(mailto:sneak@sjdev.berlin)>
+[@sjdev](https://sjdev.co) <[sj@sjdev.co(mailto:sj@sjdev.berlin)>
 
 # License
 
