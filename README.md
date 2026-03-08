@@ -2,11 +2,11 @@
 
 Prompts is an MIT-licensed collection of LLM prompts by [@sjdev](https://sjdev.co), including development policy prompts and other useful prompts for working with large language models.
 
-## Quick Start
+## Quick Start - optional scripts for cli agent
 
 ### Existing Repo
 
-Run from within the repo you want to bring up to standards. Clone the prompts repo once, then run both commands in order.
+Run from within the repo you want to bring up to standard. Clone the prompts repo once, then run both commands in order.
 
 ```bash
 export TD="$(mktemp -d)"

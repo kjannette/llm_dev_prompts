@@ -3,28 +3,23 @@ title: Code Styleguide — Go
 last_modified: 2026-02-22
 ---
 
-1.  Try to hard wrap long lines at 77 characters or less.
+1.  Hard wrap long lines at 80 characters or less.
 
-1.  Don't commit anything that hasn't been `go fmt`'d. The only exception is
-    when committing things that aren't yet syntactically valid, which should
+1.  Always `go fmt` code before committing it. The one, rare exception is
+    when committing code that is not yet syntactically valid.  This should
     only happen pre-v0.0.1 or on a non-`main` branch.
 
-1.  Even if you are planning to deal with only positive integers, use
+1.  Even if you planning to deal with only positive integers, use
     `int`/`int64` types instead of `uint`/`uint64` types. This is for
-    consistency and compatibility with the standard library; it's better than
-    casting all the time.
+    consistency and compatibility with the standard library.
 
-1.  Any project that has more than 2 or 3 modules should use the
-    `go.uber.org/fx` dependency injection framework to keep things tidy.
-
-1.  If you have to choose between readable and clever, opt for readable. It's ok
-    to make the code less concise or slightly less idiomatic if you can keep it
-    dead simple.
+1.  Any project with more than 3 modules should use the `go.uber.org/fx` 
+    injection framework.
 
 1.  Embed the git commit hash into the binary and include it in startup logs and
-    in health check output. This is to make it easier to correlate running
-    instances with their code. Do not include build time or build user, as these
-    will make the build nondeterministic.
+    in health check output, to aid correlattion of running instances with their
+    code. Do not include build time or build user, which will make the build 
+    nondeterministic.
 
     Example relevant Makefile sections:
 
@@ -67,10 +62,6 @@ last_modified: 2026-02-22
     ./httpd: ./pkg/*/*.go ./internal/*/*.go cmd/httpd/*.go
         go build -o $@ $(GOFLAGS) ./cmd/httpd/*.go
     ```
-
-1.  Avoid obvious footguns. For example, use range instead of for loops for
-    iterating.
-
 1.  Use `log/slog` for structured logging. Import `sjdev.co/go/simplelog`
     for sensible defaults. Example:
 
@@ -88,13 +79,12 @@ last_modified: 2026-02-22
     ```
 
 1.  Commit at least a single test file to check compilation. The test file can
-    be empty, but it should exist. This is to ensure that `go test ./...` will
-    always function as a syntax check at a minimum.
+    be empty, but should exist. This ensuress that `go test ./...` will
+    always function as a syntax check.
 
-1.  Full TDD and coverage isn't that important, but when fixing a specific bug,
-    try to write a test that reproduces the bug before fixing it. This will help
-    ensure that the bug doesn't come back later, and crystallizes the experience
-    of discovering the bug and the resulting fix into the repository's history.
+1.  When fixing a specific bug, write a test that reproduces it, before 
+    fixing it. This will fix the experience of discovering the bug and the fix into 
+    the repo history.
 
 1.  For anything beyond a simple script or tool, or anything that is going to
     run in any sort of "production" anywhere, make sure it passes
@@ -109,24 +99,23 @@ last_modified: 2026-02-22
     [Repository Policies](https://github.com/kjannette/LLM_DEV_PROMPTS/blob/master/REPO_POLICIES.md)
     for required targets and conventions.
 
-1.  If you are writing a single-module library, `.go` files are okay in the repo
+1.  If you are writing a single-module library, `.go` files are permissible in the repo
     root.
 
 1.  If you are writing a multi-module project, put all `.go` files in a `pkg/`
     or `internal/` subdirectory. `internal/` is for modules used only by the
     current repo, and `pkg/` is for modules that can be consumed externally.
-    This is to keep the repo root as clean as possible.
 
 1.  Binaries go in `cmd/` directories. Each binary should have its own
-    directory. This is to keep the root clean and to make it easier to see what
-    is a library and what is a binary. Only package `main` files should be in
+    directory. This is to keep the root clean and to make it easier to distinguish a 
+    library from a binary. Only package `main` files should be in
     `cmd/*` directories.
 
 1.  Keep the `main()` function as small as possible.
 
 1.  Keep the `main` package as small as possible. Move as much code as is
-    feasible to a library package, even if it's an internal one. `main` is just
-    an entrypoint to your code, not a place for implementations. Exception:
+    feasible to a library package, even if it's an internal one. `main` is
+    an entrypoint to the code, not a place for implementations. Exception:
     single-file scripts.
 
 1.  HTTP HandleFuncs should be returned from methods or functions that need to
@@ -368,8 +357,8 @@ last_modified: 2026-02-22
     files or network connections. Place `defer` statements immediately after
     resource acquisition.
 
-1.  When calling a function with `go`, wrap the function call in an anonymous
-    function to ensure it runs in the new goroutine context:
+1.  When calling a function with `go`, wrap it in an anonymous function to ensure 
+    it runs in the new goroutine context:
 
     Right:
 
@@ -426,16 +415,16 @@ last_modified: 2026-02-22
     )
     ```
 
-1.  Don't hardcode big lists of things in your normal code. Either isolate lists
-    in their own module/package and write some getters, or use a third party
+1.  Do not hardcode large lists. Either isolate lists
+    in their own module/package and write getters, or use a third party
     library. For example, if you need a list of country codes, you can use
-    [https://github.com/emvi/iso-639-1](https://github.com/emvi/iso-639-1). It's
-    okay to embed a data file (use `go embed`) in your binary if you need to,
+    [https://github.com/emvi/iso-639-1](https://github.com/emvi/iso-639-1). It is
+    permissible to embed a data file (use `go embed`) in your binary,
     but make sure you parse it once as a singleton and don't read it from disk
     every time you need it. Don't use too much memory for this, embedding
     anything more than perhaps 25MiB (uncompressed) is probably too much.
     Compress the file before embedding and uncompress during the reading/parsing
-    step for efficiency.
+    step.
 
 1.  When storing numeric values that represent a number of units, either include
     the unit in the variable name (e.g. `uptimeSeconds`, `delayMsec`,
@@ -452,11 +441,11 @@ last_modified: 2026-02-22
     releasable". "Releasable" in this context means that it builds and functions
     as expected, and that all tests and linting passes.
 
-# Other Golang Tips and Best Practices (Optional)
+# Other Golang Best Practices (Optional)
 
 1. For any internet-facing http server, set appropriate timeouts and limits to
    protect against slowloris attacks or huge uploads that can consume server
-   resources even without authentication.
+   resources without authentication.
 
     Example to limit request body size:
 
@@ -520,24 +509,21 @@ last_modified: 2026-02-22
    overhead of mutexes.
 
 1. When using mutexes, minimize the scope of locking to reduce contention and
-   potential deadlocks. Prefer to lock only the critical sections of code. Try
-   to encapsulate the critical section in its own function or method. Acquire
-   the lock as the first line of the function, defer release of the lock as the
-   second line of the function, and lines 3-5 should perform the task. Try to
-   keep it as short as possible. Avoid using mutexes in the middle of a
-   function. In short, build atomic functions.
+   potential deadlocks. Prefer to lock only the critical sections of code and try
+   to encapsulate it in its own method. Acquire
+   the lock in the first function line, defer release of the lock as the
+   second line, and lines 3-5 should perform the task. Keep it short. Avoid using mutexes in the middle of a function. In short, build atomic functions.
 
-1. Design types to be immutable where possible. This can help avoid issues with
-   concurrent access and make the code easier to reason about.
+1. Design types to be immutable, to avoid issues with concurrent access.
 
 1. Global state can lead to unpredictable behavior and makes the code harder to
    test. Use dependency injection to manage state.
 
-1. Avoid using `init` functions unless absolutely necessary as they can lead to
-   unpredictable initialization order and make the code harder to understand.
+1. Avoid using `init` functions unless absolutely necessary. Tthey can lead to
+   unpredictable initialization order and make code harder to understand.
 
 1. Provide comments for all public interfaces explaining what they do and how
-   they should be used. This helps other developers understand the intended use.
+   they should be used, to help other developers understand the intended use.
 
 1. Be mindful of resource leaks when using `time.Timer` and `time.Ticker`.
    Always stop them when they are no longer needed.
@@ -573,12 +559,11 @@ last_modified: 2026-02-22
 1. Use the `testing.TB` interface to write helper functions that can be used
    with both `*testing.T` and `*testing.B`.
 
-1. Use struct embedding to reuse code across multiple structs. This is a form of
-   composition that can simplify code reuse.
+1. Use struct embedding to reuse code across multiple structs. This form of
+   composition simplifies code reuse.
 
 1. Prefer defining explicit interfaces in your packages rather than relying on
-   implicit interfaces. This makes the intended use of interfaces clearer and
-   the code more maintainable.
+   implicit interfaces, for clarity.
 
 # Author
 

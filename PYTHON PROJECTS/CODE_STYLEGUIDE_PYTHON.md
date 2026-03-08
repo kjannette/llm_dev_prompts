@@ -3,7 +3,7 @@ title: Code Styleguide — Python
 last_modified: 2026-02-22
 ---
 
-1. Format all code with `black`, with four space indents.
+1. Format all code with four-space indents.
 
 1. Put all code in functions. If you are writing a script, put the script in a
    function called `main` and call `main()` at the end of the script using the
