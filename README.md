@@ -1,6 +1,7 @@
 # prompts
 
-Prompts is an MIT-licensed collection of LLM prompts by [@sjdev](https://sjdev.co), including development policy prompts and other useful prompts for working with large language models.
+An MIT-licensed collection of LLM prompts by [@sjdev](https://sjdev.co), intended for use in bootstrapping new projects.
+These include development policy prompts and other useful prompts for working with large language models.
 
 ## Quick Start - optional scripts for cli agent
 
