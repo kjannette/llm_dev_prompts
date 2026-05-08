@@ -12,7 +12,7 @@ These prompts are a work in progress.  I add to them as I work on new projects i
 
 # Usage - generally
 
-Imagine adding a new feature to an existing codebase, using LLM code generation.  At the outset, you would run the following prompt (discussed in greater detail below):
+Imagine the scenario: you, as a developer, are tasked with adding a new feature to an existing codebase, with maximum automation via LLM code generation.  At the outset, before adressing the substantive implementation, you would run the following prompt (discussed in greater detail below):
 
 Read $TD/prompts/REPO_POLICIES.md and $TD/prompts/EXISTING_REPO_CHECKLIST.md, then bring this repo up to those
 standards. Your scope is repo scaffolding and policy compliance: Makefile, Dockerfile, .dockerignore, .gitignore, .editorconfig, CI
