@@ -4,9 +4,7 @@ An MIT-licensed collection of LLM prompts by [@sjdev](https://sjdev.co), intende
 
 The prompts set forth best practices and procedural directives that must be followed in the architecture and implementation. Think of this repo as akin to the Chicago Manual of Style, AP Stylebook (for journalism), or The ALWD Guide to Legal Citation.
 
-The prompts include language and framework-specific development directives, intended to be reviewed by the code-building model at the outset work and followed throughout the work’s progress.
-
-For example, the Javascript code styleguide sets forth the simple directive: “[u]se const for all declarations, unless you need to reassign, then use let. Never use var.”  
+The prompts include language and framework-specific development directives, intended to be reviewed by the code-building model at the outset work and followed throughout the work’s progress.  For example, the Javascript code styleguide sets forth the simple directive: “[u]se const for all declarations, unless you need to reassign, then use let. Never use var.”  
 
 These prompts are a work in progress.  I add to them as I work on new projects in new languages and frameworks, and I am also still in the process of memorializing prompts relating to languages and frameworks I have used for many years.
 
