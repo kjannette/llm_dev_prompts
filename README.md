@@ -1,6 +1,6 @@
 # LLM Development Prompts
 
-An MIT-licensed collection of LLM prompts by [@sjdev](https://sjdev.co), intended for use in bootstrapping new projects or building out new features in existing code bases.
+An MIT-licensed collection of LLM prompts by [@sjdev](https://sjdev.co), intended for use in bootstrapping new projects or building out new features in existing codebases.
 
 The prompts set forth best practices and procedural directives that must be followed in the architecture and implementation. Think of this repo as akin to the Chicago Manual of Style, AP Stylebook (for journalism), or The ALWD Guide to Legal Citation.
 
