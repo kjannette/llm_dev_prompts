@@ -5,18 +5,18 @@ last_modified: 2026-02-22
 
 1.  Hard wrap long lines at 80 characters or less.
 
-1.  Always `go fmt` code before committing it. The one, rare exception is
+2.  Always `go fmt` code before committing it. The one, rare exception is
     when committing code that is not yet syntactically valid.  This should
     only happen pre-v0.0.1 or on a non-`main` branch.
 
-1.  Even if you planning to deal with only positive integers, use
+3.  Even if you planning to deal with only positive integers, use
     `int`/`int64` types instead of `uint`/`uint64` types. This is for
     consistency and compatibility with the standard library.
 
-1.  Any project with more than 3 modules should use the `go.uber.org/fx` 
+4.  Any project with more than 3 modules should use the `go.uber.org/fx` 
     injection framework.
 
-1.  Embed the git commit hash into the binary and include it in startup logs and
+5.  Embed the git commit hash into the binary and include it in startup logs and
     in health check output, to aid correlattion of running instances with their
     code. Do not include build time or build user, which will make the build 
     nondeterministic.
@@ -62,7 +62,7 @@ last_modified: 2026-02-22
     ./httpd: ./pkg/*/*.go ./internal/*/*.go cmd/httpd/*.go
         go build -o $@ $(GOFLAGS) ./cmd/httpd/*.go
     ```
-1.  Use `log/slog` for structured logging. Import `sjdev.co/go/simplelog`
+6.  Use `log/slog` for structured logging. Import `sjdev.co/go/simplelog`
     for sensible defaults. Example:
 
     ```go
@@ -78,83 +78,83 @@ last_modified: 2026-02-22
     }
     ```
 
-1.  Commit at least a single test file to check compilation. The test file can
+7.  Commit at least a single test file to check compilation. The test file can
     be empty, but should exist. This ensuress that `go test ./...` will
     always function as a syntax check.
 
-1.  When fixing a specific bug, write a test that reproduces it, before 
+8.  When fixing a specific bug, write a test that reproduces it, before 
     fixing it. This will fix the experience of discovering the bug and the fix into 
     the repo history.
 
-1.  For anything beyond a simple script or tool, or anything that is going to
+9.  For anything beyond a simple script or tool, or anything that is going to
     run in any sort of "production" anywhere, make sure it passes
     `golangci-lint`.
 
-1.  Write a `Dockerfile` for every repo, even if it only runs the tests and
+10. Write a `Dockerfile` for every repo, even if it only runs the tests and
     linting. `docker build .` should always make sure that the code is in an
     able-to-be-compiled state, linted, and any tests run. The Docker build
     should fail if linting doesn't pass.
 
-1.  Every repo must have a `Makefile`. See
+11. Every repo must have a `Makefile`. See
     [Repository Policies](https://github.com/kjannette/LLM_DEV_PROMPTS/blob/master/REPO_POLICIES.md)
     for required targets and conventions.
 
-1.  If you are writing a single-module library, `.go` files are permissible in the repo
+12. If you are writing a single-module library, `.go` files are permissible in the repo
     root.
 
-1.  If you are writing a multi-module project, put all `.go` files in a `pkg/`
+13. If you are writing a multi-module project, put all `.go` files in a `pkg/`
     or `internal/` subdirectory. `internal/` is for modules used only by the
     current repo, and `pkg/` is for modules that can be consumed externally.
 
-1.  Binaries go in `cmd/` directories. Each binary should have its own
+14. Binaries go in `cmd/` directories. Each binary should have its own
     directory. This is to keep the root clean and to make it easier to distinguish a 
     library from a binary. Only package `main` files should be in
     `cmd/*` directories.
 
-1.  Keep the `main()` function as small as possible.
+15. Keep the `main()` function as small as possible.
 
-1.  Keep the `main` package as small as possible. Move as much code as is
+16. Keep the `main` package as small as possible. Move as much code as is
     feasible to a library package, even if it's an internal one. `main` is
     an entrypoint to the code, not a place for implementations. Exception:
     single-file scripts.
 
-1.  HTTP HandleFuncs should be returned from methods or functions that need to
+17. HTTP HandleFuncs should be returned from methods or functions that need to
     handle HTTP requests. Don't use methods or your top level functions as
     handlers.
 
-1.  Provide a .gitignore file that ignores at least `*.log`, `*.out`, and
+18. Provide a .gitignore file that ignores at least `*.log`, `*.out`, and
     `*.test` files, as well as any binaries.
 
-1.  Constructors should be called `New()` whenever possible. `modulename.New()`
+19. Constructors should be called `New()` whenever possible. `modulename.New()`
     works great if you name the packages properly.
 
-1.  Don't make packages too big. Break them up.
+20. Don't make packages too big. Break them up.
 
-1.  Don't make functions or methods too big. Break them up.
+21. Don't make functions or methods too big. Break them up.
 
-1.  Use descriptive names for functions and methods. Don't be afraid to make
+22. Use descriptive names for functions and methods. Don't be afraid to make
     them a bit long.
 
-1.  Use descriptive names for modules and filenames. Avoid generic names like
+23. Use descriptive names for modules and filenames. Avoid generic names like
     `server`. `util` is banned.
 
-1.  Constructors should take a Params struct if they need more than 1-2
+24. Constructors should take a Params struct if they need more than 1-2
     arguments. Positional arguments are an endless source of bugs and should be
     avoided whenever possible.
 
-1.  Use `context.Context` for all functions that need it. If you don't need it,
+25. Use `context.Context` for all functions that need it. If you don't need it,
     you can pass `context.Background()`. Anything long-running should get and
     abide by a Context. A context does not count against your number of function
     or method arguments for purposes of calculating whether or not you need a
     Params struct, because the `ctx` is always first.
 
-1.  Contexts are always named `ctx`.
+26. Contexts are always named `ctx`.
 
-1.  Use `context.WithTimeout` or `context.WithDeadline` for any function that
+27. Use `context.WithTimeout` or `context.WithDeadline` for any function that
     could potentially run for a long time. This is especially true for any
     function that makes a network call. Sane timeouts are essential.
 
-1.  If a structure/type is only used in one function or method, define it there.
+28. If a structure/type is only used in one function or method, define it there.
     If it's used in more than one, define it in the package. Keep it close to
     its usages. For example:
 
@@ -185,7 +185,7 @@ last_modified: 2026-02-22
     }
     ```
 
-1.  Avoid global state, especially global variables. If you need to store state
+29. Avoid global state, especially global variables. If you need to store state
     that is global to your launch or application instance, use a package
     `globals` or `appstate` with a struct and a constructor and require it as a
     dependency in your constructors. This will allow consumers to be more easily
@@ -194,10 +194,10 @@ last_modified: 2026-02-22
     the main struct/object of your application, but remember that this harms
     testability.
 
-1.  Package-global "variables" are ok if they are constants, such as static
+30. Package-global "variables" are ok if they are constants, such as static
     strings or integers or errors.
 
-1.  Whenever possible, avoid hardcoding numbers or values in your code. Use
+31. Whenever possible, avoid hardcoding numbers or values in your code. Use
     descriptively-named constants instead. Recall the famous SICP quote:
     "Programs must be written for people to read, and only incidentally for
     machines to execute." Rather than comments, a descriptive constant name is
@@ -216,9 +216,9 @@ last_modified: 2026-02-22
      }
     ```
 
-1.  Define your struct types near their constructors.
+32. Define your struct types near their constructors.
 
-1.  Do not create packages whose sole purpose is to hold type definitions.
+33. Do not create packages whose sole purpose is to hold type definitions.
     Packages named `types`, `domain`, or `models` that contain only structs and
     interfaces (with no behavior) are a code smell. Define types alongside the
     code that uses them. Type-only packages force consuming packages into alias
@@ -227,7 +227,7 @@ last_modified: 2026-02-22
     packages need the same type, put it in the package that owns the behavior,
     or in a small, focused interface package — not in a grab-bag types package.
 
-1.  When defining custom string-based types (e.g. `type ImageID string`),
+34. When defining custom string-based types (e.g. `type ImageID string`),
     implement `fmt.Stringer`. Use `.String()` at SDK and library boundaries
     instead of `string(v)`. This makes type conversions explicit, grep-able, and
     consistent across the codebase. Example:
@@ -241,37 +241,37 @@ last_modified: 2026-02-22
     resp, err := c.docker.ContainerStart(ctx, id.String(), opts)
     ```
 
-1.  Define your interface types near the functions that use them, or if you have
+35. Define your interface types near the functions that use them, or if you have
     multiple conformant types, put the interface(s) in their own file.
 
-1.  Define errors as package-level variables. Use a descriptive name for the
+36. Define errors as package-level variables. Use a descriptive name for the
     error. Use `errors.New` to create the error. If you need to include
     additional information in the error, use a struct that implements the
     `error` interface.
 
-1.  Use lowerCamelCase for local function/variable names. Use UpperCamelCase for
+37. Use lowerCamelCase for local function/variable names. Use UpperCamelCase for
     type names, and exported function/variable names. Use snake_case for JSON
     keys. Use lowercase for filenames.
 
-1.  Explicitly specify UTC for datetimes unless you have a very good reason not
+38. Explicitly specify UTC for datetimes unless you have a very good reason not
     to. Use `time.Now().UTC()` to get the current time in UTC.
 
-1.  String dates should always be ISO8601 formatted. Use `time.Time.Format` with
+39. String dates should always be ISO8601 formatted. Use `time.Time.Format` with
     `time.RFC3339` to get the correct format.
 
-1.  Use `time.Time` for all date and time values. Do not use `int64` or `string`
+40. Use `time.Time` for all date and time values. Do not use `int64` or `string`
     for dates or times internally.
 
-1.  When using `time.Time` in a struct, use a pointer to `time.Time` so that you
+41. When using `time.Time` in a struct, use a pointer to `time.Time` so that you
     can differentiate between a zero value and a null value.
 
-1.  Use `time.Duration` for all time durations. Do not use `int64` or `string`
+42. Use `time.Duration` for all time durations. Do not use `int64` or `string`
     for durations internally.
 
-1.  When using `time.Duration` in a struct, use a pointer to `time.Duration` so
+43. When using `time.Duration` in a struct, use a pointer to `time.Duration` so
     that you can differentiate between a zero value and a null value.
 
-1.  Whenever possible, in argument types and return types, try to use standard
+44. Whenever possible, in argument types and return types, try to use standard
     library interfaces instead of concrete types. For example, use `io.Reader`
     instead of `*os.File`. Tailor these to the needs of the specific function or
     method. Examples:
@@ -350,14 +350,14 @@ last_modified: 2026-02-22
           Implementing the `String` and `Set` methods allows you to use custom
           types with the `flag` package.
 
-1.  Avoid using `panic` in library code. Instead, return errors to allow the
+45. Avoid using `panic` in library code. Instead, return errors to allow the
     caller to handle them. Reserve `panic` for truly exceptional conditions.
 
-1.  Use `defer` to ensure resources are properly cleaned up, such as closing
+46. Use `defer` to ensure resources are properly cleaned up, such as closing
     files or network connections. Place `defer` statements immediately after
     resource acquisition.
 
-1.  When calling a function with `go`, wrap it in an anonymous function to ensure 
+47. When calling a function with `go`, wrap it in an anonymous function to ensure 
     it runs in the new goroutine context:
 
     Right:
@@ -374,7 +374,7 @@ last_modified: 2026-02-22
     go someFunction(arg1, arg2)
     ```
 
-1.  Use `iota` to define enumerations in a type-safe way. This ensures that the
+48. Use `iota` to define enumerations in a type-safe way. This ensures that the
     constants are properly grouped and reduces the risk of errors.
 
     Example:
@@ -415,7 +415,7 @@ last_modified: 2026-02-22
     )
     ```
 
-1.  Do not hardcode large lists. Either isolate lists
+49. Do not hardcode large lists. Either isolate lists
     in their own module/package and write getters, or use a third party
     library. For example, if you need a list of country codes, you can use
     [https://github.com/emvi/iso-639-1](https://github.com/emvi/iso-639-1). It is
@@ -426,7 +426,7 @@ last_modified: 2026-02-22
     Compress the file before embedding and uncompress during the reading/parsing
     step.
 
-1.  When storing numeric values that represent a number of units, either include
+50. When storing numeric values that represent a number of units, either include
     the unit in the variable name (e.g. `uptimeSeconds`, `delayMsec`,
     `coreTemperatureCelsius`), or use a type alias (that includes the unit
     name), or use a 3p library such as
@@ -435,7 +435,7 @@ last_modified: 2026-02-22
     [github.com/bcicen/go-units](https://github.com/bcicen/go-units) for
     temperatures (and others). The type system is your friend, use it.
 
-1.  Once you have a working program, run `go mod tidy` to clean up your `go.mod`
+51. Once you have a working program, run `go mod tidy` to clean up your `go.mod`
     and `go.sum` files. Tag a v0.0.1 or v1.0.0. Push your `main` branch and
     tag(s). Subsequent work should happen on branches so that `main` is "always
     releasable". "Releasable" in this context means that it builds and functions
@@ -443,9 +443,9 @@ last_modified: 2026-02-22
 
 # Other Golang Best Practices (Optional)
 
-1. For any internet-facing http server, set appropriate timeouts and limits to
-   protect against slowloris attacks or huge uploads that can consume server
-   resources without authentication.
+1.  For any internet-facing http server, set appropriate timeouts and limits to
+    protect against slowloris attacks or huge uploads that can consume server
+    resources without authentication.
 
     Example to limit request body size:
 
@@ -498,72 +498,72 @@ last_modified: 2026-02-22
     }
     ```
 
-1. When passing channels to goroutines, use read-only (`<-chan`) or write-only
-   (`chan<-`) channels to communicate the direction of data flow clearly.
+2.  When passing channels to goroutines, use read-only (`<-chan`) or write-only
+    (`chan<-`) channels to communicate the direction of data flow clearly.
 
-1. Use `io.MultiReader` to concatenate multiple readers and `io.MultiWriter` to
-   duplicate writes to multiple writers. This can simplify the handling of
-   multiple data sources or destinations.
+3.  Use `io.MultiReader` to concatenate multiple readers and `io.MultiWriter` to
+    duplicate writes to multiple writers. This can simplify the handling of
+    multiple data sources or destinations.
 
-1. For simple counters and flags, use the `sync/atomic` package to avoid the
-   overhead of mutexes.
+4.  For simple counters and flags, use the `sync/atomic` package to avoid the
+    overhead of mutexes.
 
-1. When using mutexes, minimize the scope of locking to reduce contention and
-   potential deadlocks. Prefer to lock only the critical sections of code and try
-   to encapsulate it in its own method. Acquire
-   the lock in the first function line, defer release of the lock as the
-   second line, and lines 3-5 should perform the task. Keep it short. Avoid using mutexes in the middle of a function. In short, build atomic functions.
+5.  When using mutexes, minimize the scope of locking to reduce contention and
+    potential deadlocks. Prefer to lock only the critical sections of code and try
+    to encapsulate it in its own method. Acquire
+    the lock in the first function line, defer release of the lock as the
+    second line, and lines 3-5 should perform the task. Keep it short. Avoid using mutexes in the middle of a function. In short, build atomic functions.
 
-1. Design types to be immutable, to avoid issues with concurrent access.
+6.  Design types to be immutable, to avoid issues with concurrent access.
 
-1. Global state can lead to unpredictable behavior and makes the code harder to
-   test. Use dependency injection to manage state.
+7.  Global state can lead to unpredictable behavior and makes the code harder to
+    test. Use dependency injection to manage state.
 
-1. Avoid using `init` functions unless absolutely necessary. Tthey can lead to
-   unpredictable initialization order and make code harder to understand.
+8.  Avoid using `init` functions unless absolutely necessary. Tthey can lead to
+    unpredictable initialization order and make code harder to understand.
 
-1. Provide comments for all public interfaces explaining what they do and how
-   they should be used, to help other developers understand the intended use.
+9.  Provide comments for all public interfaces explaining what they do and how
+    they should be used, to help other developers understand the intended use.
 
-1. Be mindful of resource leaks when using `time.Timer` and `time.Ticker`.
-   Always stop them when they are no longer needed.
+10. Be mindful of resource leaks when using `time.Timer` and `time.Ticker`.
+    Always stop them when they are no longer needed.
 
-1. Use `sync.Pool` to manage a pool of reusable objects, which can help reduce
-   GC overhead and improve performance in high-throughput scenarios.
+11. Use `sync.Pool` to manage a pool of reusable objects, which can help reduce
+    GC overhead and improve performance in high-throughput scenarios.
 
-1. Avoid using large buffer sizes for channels. Unbounded channels can lead to
-   memory leaks. Use appropriate buffer sizes based on the application's needs.
+12. Avoid using large buffer sizes for channels. Unbounded channels can lead to
+    memory leaks. Use appropriate buffer sizes based on the application's needs.
 
-1. Always handle the case where a channel might be closed. This prevents panic
-   and ensures graceful shutdowns.
+13. Always handle the case where a channel might be closed. This prevents panic
+    and ensures graceful shutdowns.
 
-1. For small structs, use value receivers to avoid unnecessary heap allocations.
-   Use pointer receivers for large structs or when mutating the receiver.
+14. For small structs, use value receivers to avoid unnecessary heap allocations.
+    Use pointer receivers for large structs or when mutating the receiver.
 
-1. Only use goroutines when necessary. Excessive goroutines can lead to high
-   memory consumption and increased complexity.
+15. Only use goroutines when necessary. Excessive goroutines can lead to high
+    memory consumption and increased complexity.
 
-1. Use `sync.Cond` for more complex synchronization needs that cannot be met
-   with simple mutexes and channels.
+16. Use `sync.Cond` for more complex synchronization needs that cannot be met
+    with simple mutexes and channels.
 
-1. Reflection is powerful but should be used sparingly as it can lead to code
-   that is hard to understand and maintain. Prefer type-safe solutions.
+17. Reflection is powerful but should be used sparingly as it can lead to code
+    that is hard to understand and maintain. Prefer type-safe solutions.
 
-1. Avoid storing large or complex data in context. Context should be used for
-   request-scoped values like deadlines, cancellation signals, and
-   authentication tokens.
+18. Avoid storing large or complex data in context. Context should be used for
+    request-scoped values like deadlines, cancellation signals, and
+    authentication tokens.
 
-1. Use `runtime.Callers` and `runtime.CallersFrames` to capture stack traces for
-   debugging and logging purposes.
+19. Use `runtime.Callers` and `runtime.CallersFrames` to capture stack traces for
+    debugging and logging purposes.
 
-1. Use the `testing.TB` interface to write helper functions that can be used
-   with both `*testing.T` and `*testing.B`.
+20. Use the `testing.TB` interface to write helper functions that can be used
+    with both `*testing.T` and `*testing.B`.
 
-1. Use struct embedding to reuse code across multiple structs. This form of
-   composition simplifies code reuse.
+21. Use struct embedding to reuse code across multiple structs. This form of
+    composition simplifies code reuse.
 
-1. Prefer defining explicit interfaces in your packages rather than relying on
-   implicit interfaces, for clarity.
+22. Prefer defining explicit interfaces in your packages rather than relying on
+    implicit interfaces, for clarity.
 
 # Author
 
