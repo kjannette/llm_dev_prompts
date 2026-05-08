@@ -1,17 +1,17 @@
 ## Introduction
 
-This guide covers a range of style conventions for Angular application code. These recommendations
+1. This guide covers a range of style conventions for Angular application code. These recommendations
 are not required for Angular to work, but instead establish a set of coding practices that promote
 consistency across the Angular ecosystem. A consistent set of practices makes it easier to share
 code and move between projects.
 
-This guide does _not_ cover TypeScript or general coding practices unrelated to Angular. For
+2. This guide does _not_ cover TypeScript or general coding practices unrelated to Angular. For
 TypeScript, check
 out [Google's TypeScript style guide](https://google.github.io/styleguide/tsguide.html).
 
 ### When in doubt, prefer consistency
 
-Whenever you encounter a situation in which these rules contradict the style of a particular file,
+1. Whenever you encounter a situation in which these rules contradict the style of a particular file,
 prioritize maintaining consistency within a file. Mixing different style conventions in a single
 file creates more confusion than diverging from the recommendations in this guide.
 
@@ -19,32 +19,32 @@ file creates more confusion than diverging from the recommendations in this guid
 
 ### Separate words in file names with hyphens
 
-Separate words within a file name with hyphens (`-`). For example, a component named `UserProfile`
+1. Separate words within a file name with hyphens (`-`). For example, a component named `UserProfile`
 has a file name `user-profile.ts`.
 
 ### Use the same name for a file's tests with `.spec` at the end
 
-For unit tests, end file names with `.spec.ts`. For example, the unit test file for
+1. For unit tests, end file names with `.spec.ts`. For example, the unit test file for
 the `UserProfile` component has the file name `user-profile.spec.ts`.
 
 ### Match file names to the TypeScript identifier within
 
-File names should generally describe the contents of the code in the file. When the file contains a
+1. File names should generally describe the contents of the code in the file. When the file contains a
 TypeScript class, the file name should reflect that class name. For example, a file containing a
 component named `UserProfile` has the name `user-profile.ts`.
 
-If the file contains more than one primary namable identifier, choose a name that describes the
+2. If the file contains more than one primary namable identifier, choose a name that describes the
 common theme to the code within. If the code in a file does not fit within a common theme or feature
-area, consider breaking the code up into different files. Avoid overly generic file names
+area, consider breaking the code up into different files. Do not use overly generic file names
 like `helpers.ts`, `utils.ts`, or `common.ts`.
 
 ### Use the same file name for a component's TypeScript, template, and styles
 
-Components typically consist of one TypeScript file, one template file, and one style file. These
+1. Components typically consist of one TypeScript file, one template file, and one style file. These
 files should share the same name with different file extensions. For example, a `UserProfile`
 component can have the files `user-profile.ts`, `user-profile.html`, and `user-profile.css`.
 
-If a component has more than one style file, append the name with additional words that describe the
+2. If a component has more than one style file, append the name with additional words that describe the
 styles specific to that file. For example, `UserProfile` might have style
 files `user-profile-settings.css` and `user-profile-subscription.css`.
 
@@ -52,29 +52,29 @@ files `user-profile-settings.css` and `user-profile-subscription.css`.
 
 ### All the application's code goes in a directory named `src`
 
-All of your Angular UI code (TypeScript, HTML, and styles) should live inside a directory
+1. All of your Angular UI code (TypeScript, HTML, and styles) should live inside a directory
 named `src`. Code that's not related to UI, such as configuration files or scripts, should live
 outside the `src` directory.
 
-This keeps the root application directory consistent between different Angular projects and creates
+2. This keeps the root application directory consistent between different Angular projects and creates
 a clear separation between UI code and other code in your project.
 
 ### Bootstrap your application in a file named `main.ts` directly inside `src`
 
-The code to start up, or **bootstrap**, an Angular application should always live in a file
+1. The code to start up, or **bootstrap**, an Angular application should always live in a file
 named `main.ts`. This represents the primary entry point to the application.
 
 ### Group closely related files together in the same directory
 
-Angular components consist of a TypeScript file and, optionally, a template and one or more style
+1. Angular components consist of a TypeScript file and, optionally, a template and one or more style
 files. You should group these together in the same directory.
 
-Unit tests should live in the same directory as the code-under-test. Avoid collecting unrelated
+2. Unit tests should live in the same directory as the code-under-test. Do not collect unrelated
 tests into a single `tests` directory.
 
 ### Organize your project by feature areas
 
-Organize your project into subdirectories based on the features of your application or common themes
+1. Organize your project into subdirectories based on the features of your application or common themes
 to the code in those directories. For example, the project structure for a movie theater site,
 MovieReel, might look like this:
 
@@ -89,87 +89,87 @@ src/
 │ │ ├─ purchase-confirmation/
 ```
 
-Avoid creating subdirectories based on the type of code that lives in those directories. For
-example, avoid creating directories like `components`, `directives`, and `services`.
+2. Do not create subdirectories based on the type of code that lives in those directories. For
+example, do not create directories like `components`, `directives`, and `services`.
 
-Avoid putting so many files into one directory that it becomes hard to read or navigate. As the
+3. Do not put so many files into one directory that it becomes hard to read or navigate. As the
 number of files in a directory grows, consider splitting further into additional sub-directories.
 
 ### One concept per file
 
-Prefer focusing source files on a single _concept_. For Angular classes specifically, this usually
+1. Prefer focusing source files on a single _concept_. For Angular classes specifically, this usually
 means one component, directive, or service per file. However, it's okay if a file contains more than
 one component or directive if your classes are relatively small and they tie together as part of a
 single concept.
 
-When in doubt, go with the approach that leads to smaller files.
+2. When in doubt, go with the approach that leads to smaller files.
 
 ## Dependency injection
 
 ### Prefer the `inject` function over constructor parameter injection
 
-Prefer using the [`inject`](/api/core/inject) function over injecting constructor parameters. The [`inject`](/api/core/inject) function works the same way as constructor parameter injection, but offers several style advantages:
+1. Prefer using the [`inject`](/api/core/inject) function over injecting constructor parameters. The [`inject`](/api/core/inject) function works the same way as constructor parameter injection, but offers several style advantages:
 
 - [`inject`](/api/core/inject) is generally more readable, especially when a class injects many dependencies.
 - It's more syntactically straightforward to add comments to injected dependencies
 - [`inject`](/api/core/inject) offers better type inference.
 - When targeting ES2022+ with [`useDefineForClassFields`](https://www.typescriptlang.org/tsconfig/#useDefineForClassFields), you can avoid separating field declaration and initialization when fields read on injected dependencies.
 
-[You can refactor existing code to `inject` with an automatic tool](reference/migrations/inject-function).
+2. [You can refactor existing code to `inject` with an automatic tool](reference/migrations/inject-function).
 
 ## Components and directives
 
 ### Choosing component selectors
 
-See
+1. See
 the [Components guide for details on choosing component selectors](guide/components/selectors#choosing-a-selector).
 
 ### Naming component and directive members
 
-See the Components guide for details
+1. See the Components guide for details
 on [naming input properties](guide/components/inputs#choosing-input-names)
 and [naming output properties](guide/components/outputs#choosing-event-names).
 
 ### Choosing directive selectors
 
-Directives should use the
+1. Directives should use the
 same [application-specific prefix](guide/components/selectors#selector-prefixes)
 as your components.
 
-When using an attribute selector for a directive, use a camelCase attribute name. For example, if
+2. When using an attribute selector for a directive, use a camelCase attribute name. For example, if
 your application is named "MovieReel" and you build a directive that adds a tooltip to an element,
 you might use the selector `[mrTooltip]`.
 
 ### Group Angular-specific properties before methods
 
-Components and directives should group Angular-specific properties together, typically near the top
+1. Components and directives should group Angular-specific properties together, typically near the top
 of the class declaration. This includes injected dependencies, inputs, outputs, and queries. Define
 these and other properties before the class's methods.
 
-This practice makes it easier to find the class's template APIs and dependencies.
+2. This practice makes it easier to find the class's template APIs and dependencies.
 
 ### Keep components and directives focused on presentation
 
-Code inside your components and directives should generally relate to the UI shown on the page. For
+1. Code inside your components and directives should generally relate to the UI shown on the page. For
 code that makes sense on its own, decoupled from the UI, prefer refactoring to other files. For
 example, you can factor form validation rules or data transformations into separate functions or
 classes.
 
-### Avoid overly complex logic in templates
+### Do not use overly complex logic in templates
 
-Angular templates are designed to
+1. Angular templates are designed to
 accommodate [JavaScript-like expressions](guide/templates/expression-syntax).
 You should take advantage of these expressions to capture relatively straightforward logic directly
 in template expressions.
 
-When the code in a template gets too complex, though, refactor logic into the TypeScript code (typically with a [computed](guide/signals#computed-signals)).
+2. When the code in a template gets too complex, refactor logic into the TypeScript code (typically with a [computed](guide/signals#computed-signals)).
 
-There's no one hard-and-fast rule that determines what constitutes "complex". Use your best
+3. There's no one hard-and-fast rule that determines what constitutes "complex". Use your best
 judgement.
 
 ### Use `protected` on class members that are only used by a component's template
 
-A component class's public members intrinsically define a public API that's accessible via
+1. A component class's public members intrinsically define a public API that's accessible via
 dependency injection and [queries](guide/components/queries). Prefer `protected`
 access for any members that are meant to be read from the component's template.
 
@@ -189,7 +189,7 @@ export class UserProfile {
 
 ### Use `readonly` for properties that shouldn't change
 
-Mark component and directive properties initialized by Angular as `readonly`. This includes
+1. Mark component and directive properties initialized by Angular as `readonly`. This includes
 properties initialized by `input`, `model`, `output`, and queries. The readonly access modifier
 ensures that the value set by Angular is not overwritten.
 
@@ -204,7 +204,7 @@ export class UserProfile {
 }
 ```
 
-For components and directives that use the decorator-based `@Input`, `@Output`, and query APIs, this
+2. For components and directives that use the decorator-based `@Input`, `@Output`, and query APIs, this
 advice applies to output properties and queries, but not input properties.
 
 ```ts
@@ -219,7 +219,7 @@ export class UserProfile {
 
 ### Prefer `class` and `style` over `ngClass` and `ngStyle`
 
-Prefer `class` and `style` bindings over using the [`NgClass`](/api/common/NgClass) and [`NgStyle`](/api/common/NgStyle) directives.
+1. Prefer `class` and `style` bindings over using the [`NgClass`](/api/common/NgClass) and [`NgStyle`](/api/common/NgStyle) directives.
 
 ```html
 {prefer}
@@ -240,18 +240,18 @@ Prefer `class` and `style` bindings over using the [`NgClass`](/api/common/NgCla
 </div>
 ```
 
-Both `class` and `style` bindings use a more straightforward syntax that aligns closely with
+2. Both `class` and `style` bindings use a more straightforward syntax that aligns closely with
 standard HTML attributes. This makes your templates easier to read and understand, especially for
 developers familiar with basic HTML.
 
-Additionally, the `NgClass` and `NgStyle` directives incur an additional performance cost compared
+3. Additionally, the `NgClass` and `NgStyle` directives incur an additional performance cost compared
 to the built-in `class` and `style` binding syntax.
 
-For more details, refer to the [bindings guide](/guide/templates/binding#css-class-and-style-property-bindings)
+4. For more details, refer to the [bindings guide](/guide/templates/binding#css-class-and-style-property-bindings)
 
 ### Name event handlers for what they _do_, not for the triggering event
 
-Prefer naming event handlers for the action they perform rather than for the triggering event:
+1. Prefer naming event handlers for the action they perform rather than for the triggering event:
 
 ```html
 {prefer}
@@ -263,16 +263,16 @@ Prefer naming event handlers for the action they perform rather than for the tri
 <button (click)="handleClick()">Save</button>
 ```
 
-Using meaningful names like this makes it easier to tell what an event does from reading the
+2. Using meaningful names like this makes it easier to tell what an event does from reading the
 template.
 
-For keyboard events, you can use Angular's key event modifiers with specific handler names:
+3. For keyboard events, you can use Angular's key event modifiers with specific handler names:
 
 ```html
 <textarea (keydown.control.enter)="commitNotes()" (keydown.control.space)="showSuggestions()">
 ```
 
-Sometimes, event handling logic is especially long or complex, making it impractical to declare a
+4. Sometimes, event handling logic is especially long or complex, making it impractical to declare a
 single well-named handler. In these cases, it's fine to fall back to a name like 'handleKeydown' and
 then delegate to more specific behaviors based on the event details:
 
@@ -296,7 +296,7 @@ class RichText {
 
 ### Keep lifecycle methods simple
 
-Avoid putting long or complex logic inside lifecycle hooks like `ngOnInit`. Instead, prefer creating
+1. Do not put long or complex logic inside lifecycle hooks like `ngOnInit`. Instead, prefer creating
 well-named methods to contain that logic and then _call those methods_ in your lifecycle hooks.
 Lifecycle hook names describe _when_ they run, meaning that the code inside doesn't have a
 meaningful name that describes what the code inside is doing.
@@ -320,7 +320,7 @@ ngOnInit() {
 
 ### Use lifecycle hook interfaces
 
-Angular provides a TypeScript interface for each lifecycle method. When adding a lifecycle hook to
+1. Angular provides a TypeScript interface for each lifecycle method. When adding a lifecycle hook to
 your class, import and `implement` these interfaces to ensure that the methods are named correctly.
 
 ```ts
@@ -336,18 +336,19 @@ export class UserProfile implements OnInit {
   }
 }
 ```
-Components are the main building blocks of Angular applications. Each component represents a part of a larger web page. Organizing an application into components helps provide structure to your project, clearly separating code into specific parts that are easy to maintain and grow over time.
+
+2. Components are the main building blocks of Angular applications. Each component represents a part of a larger web page. Organizing an application into components helps provide structure to your project, clearly separating code into specific parts that are easy to maintain and grow over time.
 
 ## Defining a component
 
-Every component has a few main parts:
+1. Every component has a few main parts:
 
-1. A `@Component`[decorator](https://www.typescriptlang.org/docs/handbook/decorators.html) that contains some configuration used by Angular.
-2. An HTML template that controls what renders into the DOM.
-3. A [CSS selector](https://developer.mozilla.org/docs/Learn/CSS/Building_blocks/Selectors) that defines how the component is used in HTML.
-4. A TypeScript class with behaviors, such as handling user input or making requests to a server.
+    1. A `@Component`[decorator](https://www.typescriptlang.org/docs/handbook/decorators.html) that contains some configuration used by Angular.
+    2. An HTML template that controls what renders into the DOM.
+    3. A [CSS selector](https://developer.mozilla.org/docs/Learn/CSS/Building_blocks/Selectors) that defines how the component is used in HTML.
+    4. A TypeScript class with behaviors, such as handling user input or making requests to a server.
 
-Here is a simplified example of a `UserProfile` component.
+2. Here is a simplified example of a `UserProfile` component.
 
 ```typescript
 // user-profile.ts
@@ -363,7 +364,7 @@ export class UserProfile {
 }
 ```
 
-The `@Component` decorator also optionally accepts a `styles` property for any CSS you want to apply to your template:
+3. The `@Component` decorator also optionally accepts a `styles` property for any CSS you want to apply to your template:
 
 ```typescript
 // user-profile.ts
@@ -386,7 +387,7 @@ export class UserProfile {
 
 ### Separating HTML and CSS into separate files
 
-You can define a component's HTML and CSS in separate files using `templateUrl` and `styleUrl`:
+1. You can define a component's HTML and CSS in separate files using `templateUrl` and `styleUrl`:
 
 ```typescript
 // user-profile.ts
@@ -415,7 +416,7 @@ h1 {
 
 ## Using components
 
-You build an application by composing multiple components together. For example, if you are building a user profile page, you might break the page up into several components like this:
+1. You build an application by composing multiple components together. For example, if you are building a user profile page, you might break the page up into several components like this:
 
 ```mermaid
 flowchart TD
@@ -426,15 +427,15 @@ flowchart TD
     D[UserAddress]
 ```
 
-Here, the `UserProfile` component uses several other components to produce the final page.
+2. Here, the `UserProfile` component uses several other components to produce the final page.
 
-To import and use a component, you need to:
+3. To import and use a component, you need to:
 
-1. In your component's TypeScript file, add an `import` statement for the component you want to use.
-2. In your `@Component` decorator, add an entry to the `imports` array for the component you want to use.
-3. In your component's template, add an element that matches the selector of the component you want to use.
+    1. In your component's TypeScript file, add an `import` statement for the component you want to use.
+    2. In your `@Component` decorator, add an entry to the `imports` array for the component you want to use.
+    3. In your component's template, add an element that matches the selector of the component you want to use.
 
-Here's an example of a `UserProfile` component importing a `ProfilePhoto` component:
+4. Here's an example of a `UserProfile` component importing a `ProfilePhoto` component:
 
 ```typescript
 // user-profile.ts
@@ -454,16 +455,16 @@ export class UserProfile {
 }
 ```
 
-TIP: Want to know more about Angular components? See the [In-depth Components guide](guide/components) for the full details.
+5. TIP: Want to know more about Angular components? See the [In-depth Components guide](guide/components) for the full details.
 
 ## Next Step
 
-Now that you know how components work in Angular, it's time to learn how we add and manage dynamic data in our application.
+1. Now that you know how components work in Angular, it's time to learn how we add and manage dynamic data in our application.
 # Component selectors
 
-TIP: This guide assumes you've already read the [Essentials Guide](essentials). Read that first if you're new to Angular.
+1. TIP: This guide assumes you've already read the [Essentials Guide](essentials). Read that first if you're new to Angular.
 
-Every component defines
+2. Every component defines
 a [CSS selector](https://developer.mozilla.org/docs/Web/CSS/CSS_selectors) that determines how
 the component is used:
 
@@ -476,7 +477,7 @@ the component is used:
 export class ProfilePhoto { }
 ```
 
-You use a component by creating a matching HTML element in the templates of _other_ components:
+3. You use a component by creating a matching HTML element in the templates of _other_ components:
 
 ```typescript
 {highlight: [3]}
@@ -489,17 +490,17 @@ You use a component by creating a matching HTML element in the templates of _oth
 export class UserProfile { }
 ```
 
-**Angular matches selectors statically at compile-time**. Changing the DOM at run-time, either via
+4. **Angular matches selectors statically at compile-time**. Changing the DOM at run-time, either via
 Angular bindings or with DOM APIs, does not affect the components rendered.
 
-**An element can match exactly one component selector.** If multiple component selectors match a
+5. **An element can match exactly one component selector.** If multiple component selectors match a
 single element, Angular reports an error.
 
-**Component selectors are case-sensitive.**
+6. **Component selectors are case-sensitive.**
 
 ## Types of selectors
 
-Angular supports a limited subset
+1. Angular supports a limited subset
 of [basic CSS selector types](https://developer.mozilla.org/docs/Web/CSS/CSS_Selectors) in
 component selectors:
 
@@ -509,19 +510,19 @@ component selectors:
 | Attribute selector | Matches elements based on the presence of an HTML attribute and, optionally, an exact value for that attribute. | `[dropzone]` `[type="reset"]` |
 | Class selector     | Matches elements based on the presence of a CSS class.                                                          | `.menu-item`                  |
 
-For attribute values, Angular supports matching an exact attribute value with the equals (`=`)
+2. For attribute values, Angular supports matching an exact attribute value with the equals (`=`)
 operator. Angular does not support other attribute value operators.
 
-Angular component selectors do not support combinators, including
+3. Angular component selectors do not support combinators, including
 the [descendant combinator](https://developer.mozilla.org/docs/Web/CSS/Descendant_combinator)
 or [child combinator](https://developer.mozilla.org/docs/Web/CSS/Child_combinator).
 
-Angular component selectors do not support
+4. Angular component selectors do not support
 specifying [namespaces](https://developer.mozilla.org/docs/Web/SVG/Namespaces_Crash_Course).
 
 ### The `:not` pseudo-class
 
-Angular supports [the `:not` pseudo-class](https://developer.mozilla.org/docs/Web/CSS/:not).
+1. Angular supports [the `:not` pseudo-class](https://developer.mozilla.org/docs/Web/CSS/:not).
 You can append this pseudo-class to any other selector to narrow which elements a component's
 selector matches. For example, you could define a `[dropzone]` attribute selector and prevent
 matching `textarea` elements:
@@ -535,11 +536,11 @@ matching `textarea` elements:
 export class DropZone { }
 ```
 
-Angular does not support any other pseudo-classes or pseudo-elements in component selectors.
+2. Angular does not support any other pseudo-classes or pseudo-elements in component selectors.
 
 ### Combining selectors
 
-You can combine multiple selectors by concatenating them. For example, you can match `<button>`
+1. You can combine multiple selectors by concatenating them. For example, you can match `<button>`
 elements that specify `type="reset"`:
 
 ```typescript
@@ -551,7 +552,7 @@ elements that specify `type="reset"`:
 export class ResetButton { }
 ```
 
-You can also define multiple selectors with a comma-separated list:
+2. You can also define multiple selectors with a comma-separated list:
 
 ```typescript
 {highlight: [2]}
@@ -562,33 +563,33 @@ You can also define multiple selectors with a comma-separated list:
 export class DropZone { }
 ```
 
-Angular creates a component for each element that matches _any_ of the selectors in the list.
+3. Angular creates a component for each element that matches _any_ of the selectors in the list.
 
 ## Choosing a selector
 
-The vast majority of components should use a custom element name as their selector. All custom
+1. The vast majority of components should use a custom element name as their selector. All custom
 element names should include a hyphen as described
 by [the HTML specification](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name).
 By default, Angular reports an error if it encounters a custom tag name that does not match any
 available components, preventing bugs due to mistyped component names.
 
-See [Advanced component configuration](guide/components/advanced-configuration) for details on
+2. See [Advanced component configuration](guide/components/advanced-configuration) for details on
 using [native custom elements](https://developer.mozilla.org/docs/Web/Web_Components) in
 Angular templates.
 
 ### Selector prefixes
 
-The Angular team recommends using a short, consistent prefix for all the custom components
+1. The Angular team recommends using a short, consistent prefix for all the custom components
 defined inside your project. For example, if you were to build YouTube with Angular, you might
 prefix your components with `yt-`, with components like `yt-menu`, `yt-player`, etc. Namespacing
 your selectors like this makes it immediately clear where a particular component comes from. By
 default, the Angular CLI uses `app-`.
 
-IMPORTANT: Angular uses the `ng` selector prefix for its own framework APIs. Never use `ng` as a selector prefix for your own custom components.
+2. IMPORTANT: Angular uses the `ng` selector prefix for its own framework APIs. Never use `ng` as a selector prefix for your own custom components.
 
 ### When to use an attribute selector
 
-You should consider an attribute selector when you want to create a component on a standard native
+1. You should consider an attribute selector when you want to create a component on a standard native
 element. For example, if you want to create a custom button component, you can take advantage of the
 standard `<button>` element by using an attribute selector:
 
@@ -601,21 +602,21 @@ standard `<button>` element by using an attribute selector:
 export class YouTubeUploadButton { }
 ```
 
-This approach allows consumers of the component to directly use all the element's standard APIs
+2. This approach allows consumers of the component to directly use all the element's standard APIs
 without extra work. This is especially valuable for ARIA attributes such as `aria-label`.
 
-Angular does not report errors when it encounters custom attributes that don't match an available
+3. Angular does not report errors when it encounters custom attributes that don't match an available
 component. When using components with attribute selectors, consumers may forget to import the
 component or its NgModule, resulting in the component not rendering.
 See [Importing and using components](guide/components#imports-in-the-component-decorator) for more information.
 
-Components that define attribute selectors should use lowercase, dash-case attributes. You can
+4. Components that define attribute selectors should use lowercase, dash-case attributes. You can
 follow the same prefixing recommendation described above.
 # Styling components
 
-TIP: This guide assumes you've already read the [Essentials Guide](essentials). Read that first if you're new to Angular.
+1. TIP: This guide assumes you've already read the [Essentials Guide](essentials). Read that first if you're new to Angular.
 
-Components can optionally include CSS styles that apply to that component's DOM:
+2. Components can optionally include CSS styles that apply to that component's DOM:
 
 ```typescript
 {highlight:[4]}
@@ -631,7 +632,7 @@ Components can optionally include CSS styles that apply to that component's DOM:
 export class ProfilePhoto {}
 ```
 
-You can also choose to write your styles in separate files:
+3. You can also choose to write your styles in separate files:
 
 ```typescript
 {highlight:[4]}
@@ -643,18 +644,18 @@ You can also choose to write your styles in separate files:
 export class ProfilePhoto {}
 ```
 
-When Angular compiles your component, these styles are emitted with your component's JavaScript
+4. When Angular compiles your component, these styles are emitted with your component's JavaScript
 output. This means that component styles participate in the JavaScript module system. When you
 render an Angular component, the framework automatically includes its associated styles, even when
 lazy-loading a component.
 
-Angular works with any tool that outputs CSS,
+5. Angular works with any tool that outputs CSS,
 including [Sass](https://sass-lang.com), [less](https://lesscss.org),
 and [stylus](https://stylus-lang.com).
 
 ## Style scoping
 
-Every component has a **view encapsulation** setting that determines how the framework scopes a
+1. Every component has a **view encapsulation** setting that determines how the framework scopes a
 component's styles. There are four view encapsulation modes: `Emulated`, `ShadowDom`, `ExperimentalIsolatedShadowDom`, and `None`.
 You can specify the mode in the `@Component` decorator:
 
@@ -668,28 +669,28 @@ export class ProfilePhoto { }
 ```
 #### `::ng-deep`
 
-Angular's emulated encapsulation mode supports a custom pseudo class, `::ng-deep`.
+1. Angular's emulated encapsulation mode supports a custom pseudo class, `::ng-deep`.
 **The Angular team strongly discourages new use of `::ng-deep`**. These APIs remain
 exclusively for backwards compatibility.
 
 ## Defining styles in templates
 
-You can use the `<style>` element in a component's template to define additional styles. The component's view encapsulation mode applies to styles defined this way.
+1. You can use the `<style>` element in a component's template to define additional styles. The component's view encapsulation mode applies to styles defined this way.
 
-Angular does not support bindings inside of style elements.
+2. Angular does not support bindings inside of style elements.
 
 ## Referencing external style files
 
-Component templates can
+1. Component templates can
 use [the `<link>` element](https://developer.mozilla.org/docs/Web/HTML/Element/link) to reference CSS files. Additionally, your CSS may use [the `@import`at-rule](https://developer.mozilla.org/docs/Web/CSS/@import) to reference
 CSS files. Angular treats these references as _external_ styles. External styles are not affected by emulated view encapsulation.
 # Accepting data with input properties
 
-TIP: This guide assumes you've already read the [Essentials Guide](essentials). Read that first if you're new to Angular.
+1. TIP: This guide assumes you've already read the [Essentials Guide](essentials). Read that first if you're new to Angular.
 
-TIP: If you're familiar with other web frameworks, input properties are similar to _props_.
+2. TIP: If you're familiar with other web frameworks, input properties are similar to _props_.
 
-When you use a component, you commonly want to pass some data to it. A component specifies the data that it accepts by declaring
+3. When you use a component, you commonly want to pass some data to it. A component specifies the data that it accepts by declaring
 **inputs**:
 
 ```ts
@@ -705,13 +706,13 @@ export class CustomSlider {
 }
 ```
 
-This lets you bind to the property in a template:
+4. This lets you bind to the property in a template:
 
 ```html
 <custom-slider [value]="50" />
 ```
 
-If an input has a default value, TypeScript infers the type from the default value:
+5. If an input has a default value, TypeScript infers the type from the default value:
 
 ```ts
 @Component({
@@ -723,9 +724,9 @@ export class CustomSlider {
 }
 ```
 
-You can explicitly declare a type for the input by specifying a generic parameter to the function.
+6. You can explicitly declare a type for the input by specifying a generic parameter to the function.
 
-If an input without a default value is not set, its value is `undefined`:
+7. If an input without a default value is not set, its value is `undefined`:
 
 ```ts
 @Component({
@@ -737,17 +738,17 @@ export class CustomSlider {
 }
 ```
 
-**Angular records inputs statically at compile-time**. Inputs cannot be added or removed at run-time.
+8. **Angular records inputs statically at compile-time**. Inputs cannot be added or removed at run-time.
 
-The `input` function has special meaning to the Angular compiler. **You can exclusively call `input` in component and directive property initializers.**
+9. The `input` function has special meaning to the Angular compiler. **You can exclusively call `input` in component and directive property initializers.**
 
-When extending a component class, **inputs are inherited by the child class.**
+10. When extending a component class, **inputs are inherited by the child class.**
 
-**Input names are case-sensitive.**
+11. **Input names are case-sensitive.**
 
 ## Reading inputs
 
-The `input` function returns an `InputSignal`. You can read the value by calling the signal:
+1. The `input` function returns an `InputSignal`. You can read the value by calling the signal:
 
 ```ts
 {highlight:[11]}
@@ -765,11 +766,11 @@ export class CustomSlider {
 }
 ```
 
-Signals created by the `input` function are read-only.
+2. Signals created by the `input` function are read-only.
 
 ## Required inputs
 
-You can declare that an input is `required` by calling `input.required` instead of `input`:
+1. You can declare that an input is `required` by calling `input.required` instead of `input`:
 
 ```ts
 {highlight:[6]}
@@ -782,13 +783,13 @@ export class CustomSlider {
 }
 ```
 
-Angular enforces that required inputs _must_ be set when the component is used in a template. If you try to use a component without specifying all of its required inputs, Angular reports an error at build-time.
+2. Angular enforces that required inputs _must_ be set when the component is used in a template. If you try to use a component without specifying all of its required inputs, Angular reports an error at build-time.
 
-Required inputs do not automatically include `undefined` in the generic parameter of the returned `InputSignal`.
+3. Required inputs do not automatically include `undefined` in the generic parameter of the returned `InputSignal`.
 
 ## Configuring inputs
 
-The `input` function accepts a config object as a second parameter that lets you change the way that input works.
+1. The `input` function accepts a config object as a second parameter that lets you change the way that input works.
 
 ### Input transforms
 
@@ -813,17 +814,17 @@ function trimString(value: string | undefined): string {
 <custom-slider [label]="systemVolume" />
 ```
 
-In the example above, whenever the value of `systemVolume` changes, Angular runs `trimString` and sets `label` to the result.
+2. In the example above, whenever the value of `systemVolume` changes, Angular runs `trimString` and sets `label` to the result.
 
-The most common use-case for input transforms is to accept a wider range of value types in templates, often including `null` and `undefined`.
+3. The most common use-case for input transforms is to accept a wider range of value types in templates, often including `null` and `undefined`.
 
-**Input transform function must be statically analyzable at build-time.** You cannot set transform functions conditionally or as the result of an expression evaluation.
+4. **Input transform function must be statically analyzable at build-time.** You cannot set transform functions conditionally or as the result of an expression evaluation.
 
-**Input transform functions should always be [pure functions](https://en.wikipedia.org/wiki/Pure_function).** Relying on state outside the transform function can lead to unpredictable behavior.
+5. **Input transform functions should always be [pure functions](https://en.wikipedia.org/wiki/Pure_function).** Relying on state outside the transform function can lead to unpredictable behavior.
 
 #### Type checking
 
-When you specify an input transform, the type of the transform function's parameter determines the types of values that can be set to the input in a template.
+1. When you specify an input transform, the type of the transform function's parameter determines the types of values that can be set to the input in a template.
 
 ```ts
 @Component({
@@ -838,11 +839,11 @@ function appendPx(value: number): string {
 }
 ```
 
-In the example above, the `widthPx` input accepts a `number` while the `InputSignal` property returns a `string`.
+2. In the example above, the `widthPx` input accepts a `number` while the `InputSignal` property returns a `string`.
 
 #### Built-in transformations
 
-Angular includes two built-in transform functions for the two most common scenarios: coercing values to boolean and numbers.
+1. Angular includes two built-in transform functions for the two most common scenarios: coercing values to boolean and numbers.
 
 ```ts
 import {Component, input, booleanAttribute, numberAttribute} from '@angular/core';
@@ -856,14 +857,14 @@ export class CustomSlider {
 }
 ```
 
-`booleanAttribute` imitates the behavior of standard HTML [boolean attributes](https://developer.mozilla.org/docs/Glossary/Boolean/HTML), where the
+2. `booleanAttribute` imitates the behavior of standard HTML [boolean attributes](https://developer.mozilla.org/docs/Glossary/Boolean/HTML), where the
 _presence_ of the attribute indicates a "true" value. However, Angular's `booleanAttribute` treats the literal string `"false"` as the boolean `false`.
 
-`numberAttribute` attempts to parse the given value to a number, producing `NaN` if parsing fails.
+3. `numberAttribute` attempts to parse the given value to a number, producing `NaN` if parsing fails.
 
 ### Input aliases
 
-You can specify the `alias` option to change the name of an input in templates.
+1. You can specify the `alias` option to change the name of an input in templates.
 
 ```ts
 {highlight:[5]}
@@ -879,17 +880,17 @@ export class CustomSlider {
 <custom-slider [sliderValue]="50" />
 ```
 
-This alias does not affect usage of the property in TypeScript code.
+2. This alias does not affect usage of the property in TypeScript code.
 
-While you should generally avoid aliasing inputs for components, this feature can be useful for renaming properties while preserving an alias for the original name or for avoiding collisions with the name of native DOM element properties.
+3. While you should generally not alias inputs for components, this feature can be useful for renaming properties while preserving an alias for the original name or for avoiding collisions with the name of native DOM element properties.
 
 ## Model inputs
 
-**Model inputs** are a special type of input that enable a component to propagate new values back to its parent component.
+1. **Model inputs** are a special type of input that enable a component to propagate new values back to its parent component.
 
-When creating a component, you can define a model input similarly to how you create a standard input.
+2. When creating a component, you can define a model input similarly to how you create a standard input.
 
-Both types of input allow someone to bind a value into the property. However, **model inputs allow the component author to write values into the property**. If the property is bound with a two-way binding, the new value propagates to that binding.
+3. Both types of input allow someone to bind a value into the property. However, **model inputs allow the component author to write values into the property**. If the property is bound with a two-way binding, the new value propagates to that binding.
 
 ```ts
 @Component({
@@ -918,15 +919,15 @@ export class MediaControls {
 }
 ```
 
-In the above example, the `CustomSlider` can write values into its `value` model input, which then propagates those values back to the `volume` signal in `MediaControls`. This binding keeps the values of `value` and `volume` in sync. Notice that the binding passes the `volume` signal instance, not the _value_ of the signal.
+4. In the above example, the `CustomSlider` can write values into its `value` model input, which then propagates those values back to the `volume` signal in `MediaControls`. This binding keeps the values of `value` and `volume` in sync. Notice that the binding passes the `volume` signal instance, not the _value_ of the signal.
 
-In other respects, model inputs work similarly to standard inputs. You can read the value by calling the signal function, including in [reactive contexts](guide/signals#reactive-contexts) like `computed` and `effect`.
+5. In other respects, model inputs work similarly to standard inputs. You can read the value by calling the signal function, including in [reactive contexts](guide/signals#reactive-contexts) like `computed` and `effect`.
 
-See [Two-way binding](guide/templates/two-way-binding) for more details on two-way binding in templates.
+6. See [Two-way binding](guide/templates/two-way-binding) for more details on two-way binding in templates.
 
 ### Two-way binding with plain properties
 
-You can bind a plain JavaScript property to a model input.
+1. You can bind a plain JavaScript property to a model input.
 
 ```typescript
 @Component({
@@ -940,11 +941,11 @@ export class MediaControls {
 }
 ```
 
-In the example above, the `CustomSlider` can write values into its `value` model input, which then propagates those values back to the `volume` property in `MediaControls`. This binding keeps the values of `value` and `volume` in sync.
+2. In the example above, the `CustomSlider` can write values into its `value` model input, which then propagates those values back to the `volume` property in `MediaControls`. This binding keeps the values of `value` and `volume` in sync.
 
 ### Implicit `change` events
 
-When you declare a model input in a component or directive, Angular automatically creates a corresponding [output](guide/components/outputs) for that model. The output's name is the model input's name suffixed with "Change".
+1. When you declare a model input in a component or directive, Angular automatically creates a corresponding [output](guide/components/outputs) for that model. The output's name is the model input's name suffixed with "Change".
 
 ```ts
 @Directive({
@@ -957,31 +958,31 @@ export class CustomCheckbox {
 }
 ```
 
-Angular emits this change event whenever you write a new value into the model input by calling its `set` or `update` methods.
+2. Angular emits this change event whenever you write a new value into the model input by calling its `set` or `update` methods.
 
-See [Custom events with outputs](guide/components/outputs) for more details on outputs.
+3. See [Custom events with outputs](guide/components/outputs) for more details on outputs.
 
 ### Customizing model inputs
 
-You can mark a model input as required or provide an alias in the same way as a [standard input](guide/components/inputs).
+1. You can mark a model input as required or provide an alias in the same way as a [standard input](guide/components/inputs).
 
-Model inputs do not support input transforms.
+2. Model inputs do not support input transforms, so do not attempt them.
 
 ### When to use model inputs
 
-Use model inputs when you want a component to support two-way binding. This is typically appropriate when a component exists to modify a value based on user interaction. Most commonly, custom form controls, such as a date picker or combobox, should use model inputs for their primary value.
+1. Use model inputs when you want a component to support two-way binding. This is typically appropriate when a component exists to modify a value based on user interaction. Most commonly, custom form controls, such as a date picker or combobox, should use model inputs for their primary value.
 
 ## Choosing input names
 
-Avoid choosing input names that collide with properties on DOM elements like HTMLElement. Name collisions introduce confusion about whether the bound property belongs to the component or the DOM element.
+1. Do not choose input names that collide with properties on DOM elements like HTMLElement. Name collisions introduce confusion about whether the bound property belongs to the component or the DOM element.
 
-Avoid adding prefixes for component inputs like you would with component selectors. Since a given element can only host one component, any custom properties can be assumed to belong to the component.
+2. Do not add prefixes for component inputs like you would with component selectors. Since a given element can only host one component, any custom properties can be assumed to belong to the component.
 
 ## Declaring inputs with the `@Input` decorator
 
-TIP: While the Angular team recommends using the signal-based `input` function for new projects, the original decorator-based `@Input` API remains fully supported.
+1. While the Angular team recommends using the signal-based `input` function for new projects, the original decorator-based `@Input` API is fully supported.
 
-You can alternatively declare component inputs by adding the `@Input` decorator to a property:
+2. You can alternatively declare component inputs by adding the `@Input` decorator to a property:
 
 ```ts
 {highlight:[5]}
@@ -993,7 +994,7 @@ export class CustomSlider {
 }
 ```
 
-Binding to an input is the same in both signal-based and decorator-based inputs:
+3. Binding to an input is the same in both signal-based and decorator-based inputs:
 
 ```html
 <custom-slider [value]="50" />
@@ -1001,11 +1002,11 @@ Binding to an input is the same in both signal-based and decorator-based inputs:
 
 ### Customizing decorator-based inputs
 
-The `@Input` decorator accepts a config object that lets you change the way that input works.
+1. The `@Input` decorator accepts a config object that lets you change the way that input works.
 
 #### Required inputs
 
-You can specify the `required` option to enforce that a given input must always have a value.
+1. You can specify the `required` option to enforce that a given input must always have a value.
 
 ```ts
 {highlight:[5]}
@@ -1017,11 +1018,11 @@ export class CustomSlider {
 }
 ```
 
-If you try to use a component without specifying all of its required inputs, Angular reports an error at build-time.
+2. If you try to use a component without specifying all of its required inputs, Angular reports an error at build-time.
 
 #### Input transforms
 
-You can specify a `transform` function to change the value of an input when it's set by Angular. This transform function works identically to transform functions for signal-based inputs described above.
+1. You can specify a `transform` function to change the value of an input when it's set by Angular. This transform function works identically to transform functions for signal-based inputs described above.
 
 ```ts
 {highlight:[6]}
@@ -1040,7 +1041,7 @@ function trimString(value: string | undefined) {
 
 #### Input aliases
 
-You can specify the `alias` option to change the name of an input in templates.
+1. You can specify the `alias` option to change the name of an input in templates.
 
 ```ts
 {highlight:[5]}
@@ -1056,13 +1057,13 @@ export class CustomSlider {
 <custom-slider [sliderValue]="50" />
 ```
 
-The `@Input` decorator also accepts the alias as its first parameter in place of the config object.
+2. The `@Input` decorator also accepts the alias as its first parameter in place of the config object.
 
-Input aliases work the same way as for signal-based inputs described above.
+3. Input aliases work the same way as for signal-based inputs described above.
 
 ### Inputs with getters and setters
 
-When using decorator-based inputs, a property implemented with a getter and setter can be an input:
+1. When using decorator-based inputs, a property implemented with a getter and setter can be an input:
 
 ```ts
 export class CustomSlider {
@@ -1079,7 +1080,7 @@ export class CustomSlider {
 }
 ```
 
-You can even create a _write-only_ input by only defining a public setter:
+2. You can even create a _write-only_ input by only defining a public setter:
 
 ```ts
 export class CustomSlider {
@@ -1092,13 +1093,13 @@ export class CustomSlider {
 }
 ```
 
-**Prefer using input transforms instead of getters and setters** if possible.
+3. **Prefer using input transforms instead of getters and setters** if possible.
 
-Avoid complex or costly getters and setters. Angular may invoke an input's setter multiple times, which may negatively impact application performance if the setter performs any costly behaviors, such as DOM manipulation.
+4. Do not use complex or costly getters and setters. Angular may invoke an input's setter multiple times, which may negatively impact application performance if the setter performs any costly behaviors, such as DOM manipulation.
 
 ## Specify inputs in the `@Component` decorator
 
-In addition to the `@Input` decorator, you can also specify a component's inputs with the `inputs` property in the `@Component` decorator. This can be useful when a component inherits a property from a base class:
+1. In addition to the `@Input` decorator, you can also specify a component's inputs with the `inputs` property in the `@Component` decorator. This can be useful when a component inherits a property from a base class:
 
 ```ts
 {highlight:[4]}
@@ -1110,7 +1111,7 @@ In addition to the `@Input` decorator, you can also specify a component's inputs
 export class CustomSlider extends BaseSlider { }
 ```
 
-You can additionally specify an input alias in the `inputs` list by putting the alias after a colon in the string:
+2. You can additionally specify an input alias in the `inputs` list by putting the alias after a colon in the string:
 
 ```ts
 {highlight:[4]}
@@ -1123,9 +1124,9 @@ export class CustomSlider extends BaseSlider { }
 ```
 # Custom events with outputs
 
-TIP: This guide assumes you've already read the [Essentials Guide](essentials). Read that first if you're new to Angular.
+1. TIP: This guide assumes you've already read the [Essentials Guide](essentials). Read that first if you're new to Angular.
 
-Angular components can define custom events by assigning a property to the `output` function:
+2. Angular components can define custom events by assigning a property to the `output` function:
 
 ```ts
 {highlight:[3]}
@@ -1141,25 +1142,25 @@ export class ExpandablePanel {
 <expandable-panel (panelClosed)="savePanelState()" />
 ```
 
-The `output` function returns an `OutputEmitterRef`. You can emit an event by calling the `emit` method on the `OutputEmitterRef`:
+3. The `output` function returns an `OutputEmitterRef`. You can emit an event by calling the `emit` method on the `OutputEmitterRef`:
 
 ```ts
 this.panelClosed.emit();
 ```
 
-Angular refers to properties initialized with the `output` function as **outputs**. You can use outputs to raise custom events, similar to native browser events like `click`.
+4. Angular refers to properties initialized with the `output` function as **outputs**. You can use outputs to raise custom events, similar to native browser events like `click`.
 
-**Angular custom events do not bubble up the DOM**.
+5. **Angular custom events do not bubble up the DOM**.
 
-**Output names are case-sensitive.**
+6. **Output names are case-sensitive.**
 
-When extending a component class, **outputs are inherited by the child class.**
+7. When extending a component class, **outputs are inherited by the child class.**
 
-The `output` function has special meaning to the Angular compiler. **You can exclusively call `output` in component and directive property initializers.**
+8. The `output` function has special meaning to the Angular compiler. **You can exclusively call `output` in component and directive property initializers.**
 
 ## Emitting event data
 
-You can pass event data when calling `emit`:
+1. You can pass event data when calling `emit`:
 
 ```ts
 // You can emit primitive values.
@@ -1172,13 +1173,13 @@ this.thumbDropped.emit({
 });
 ```
 
-When defining an event listener in a template, you can access the event data from the `$event` variable:
+2. When defining an event listener in a template, you can access the event data from the `$event` variable:
 
 ```html
 <custom-slider (valueChanged)="logValue($event)" />
 ```
 
-Receive the event data in the parent component:
+3. Receive the event data in the parent component:
 
 ```ts
 @Component({
@@ -1194,7 +1195,7 @@ export class App {
 
 ## Customizing output names
 
-The `output` function accepts a parameter that lets you specify a different name for the event in a template:
+1. The `output` function accepts a parameter that lets you specify a different name for the event in a template:
 
 ```ts
 @Component({
@@ -1209,13 +1210,13 @@ export class CustomSlider {
 <custom-slider (valueChanged)="saveVolume()" />
 ```
 
-This alias does not affect usage of the property in TypeScript code.
+2. This alias does not affect usage of the property in TypeScript code.
 
-While you should generally avoid aliasing outputs for components, this feature can be useful for renaming properties while preserving an alias for the original name or for avoiding collisions with the name of native DOM events.
+3. While you should generally not alias outputs for components, this feature can be useful for renaming properties while preserving an alias for the original name or for avoiding collisions with the name of native DOM events.
 
 ## Subscribing to outputs programmatically
 
-When creating a component dynamically, you can programmatically subscribe to output events from the component instance. The `OutputRef` type includes a `subscribe` method:
+1. When creating a component dynamically, you can programmatically subscribe to output events from the component instance. The `OutputRef` type includes a `subscribe` method:
 
 ```ts
 const someComponentRef: ComponentRef<SomeComponent> = viewContainerRef.createComponent(/*...*/);
@@ -1225,7 +1226,7 @@ someComponentRef.instance.someEventProperty.subscribe((eventData) => {
 });
 ```
 
-Angular automatically cleans up event subscriptions when it destroys components with subscribers. Alternatively, you can manually unsubscribe from an event. The `subscribe` function returns an `OutputRefSubscription` with an `unsubscribe` method:
+2. Angular automatically cleans up event subscriptions when it destroys components with subscribers. Alternatively, you can manually unsubscribe from an event. The `subscribe` function returns an `OutputRefSubscription` with an `unsubscribe` method:
 
 ```ts
 const eventSubscription = someComponent.someEventProperty.subscribe((eventData) => {
@@ -1239,22 +1240,22 @@ eventSubscription.unsubscribe();
 
 ## Choosing event names
 
-Avoid choosing output names that collide with events on DOM elements like HTMLElement. Name collisions introduce confusion about whether the bound property belongs to the component or the DOM element.
+1. Do not choose output names that collide with events on DOM elements like HTMLElement. Name collisions introduce confusion about whether the bound property belongs to the component or the DOM element.
 
-Avoid adding prefixes for component outputs like you would with component selectors. Since a given element can only host one component, any custom properties can be assumed to belong to the component.
+2. Do not add prefixes for component outputs like you would with component selectors. Since a given element can only host one component, any custom properties can be assumed to belong to the component.
 
-Always use [camelCase](https://en.wikipedia.org/wiki/Camel_case) output names. Avoid prefixing output names with "on".
+3. Always use [camelCase](https://en.wikipedia.org/wiki/Camel_case) output names. Do not prefix output names with "on".
 
 ## Using outputs with RxJS
 
-See [RxJS interop with component and directive outputs](ecosystem/rxjs-interop/output-interop) for details on interoperability between outputs and RxJS.
+1. See [RxJS interop with component and directive outputs](ecosystem/rxjs-interop/output-interop) for details on interoperability between outputs and RxJS.
 
 ## Declaring outputs with the `@Output` decorator
 
-TIP: While the Angular team recommends using the `output` function for new projects, the
+1. TIP: While the Angular team recommends using the `output` function for new projects, the
 original decorator-based `@Output` API remains fully supported.
 
-You can alternatively define custom events by assigning a property to a new `EventEmitter` and adding the `@Output` decorator:
+2. You can alternatively define custom events by assigning a property to a new `EventEmitter` and adding the `@Output` decorator:
 
 ```ts
 @Component({
@@ -1265,11 +1266,11 @@ export class ExpandablePanel {
 }
 ```
 
-You can emit an event by calling the `emit` method on the `EventEmitter`.
+3. You can emit an event by calling the `emit` method on the `EventEmitter`.
 
 ### Aliases with the `@Output` decorator
 
-The `@Output` decorator accepts a parameter that lets you specify a different name for the event in a template:
+1. The `@Output` decorator accepts a parameter that lets you specify a different name for the event in a template:
 
 ```ts
 @Component({
@@ -1284,11 +1285,11 @@ export class CustomSlider {
 <custom-slider (valueChanged)="saveVolume()" />
 ```
 
-This alias does not affect usage of the property in TypeScript code.
+2. This alias does not affect usage of the property in TypeScript code.
 
 ## Specify outputs in the `@Component` decorator
 
-In addition to the `@Output` decorator, you can also specify a component's outputs with the `outputs` property in the `@Component` decorator. This can be useful when a component inherits a property from a base class:
+1. In addition to the `@Output` decorator, you can also specify a component's outputs with the `outputs` property in the `@Component` decorator. This can be useful when a component inherits a property from a base class:
 
 ```ts
 // `CustomSlider` inherits the `valueChanged` property from `BaseSlider`.
@@ -1299,7 +1300,7 @@ In addition to the `@Output` decorator, you can also specify a component's outpu
 export class CustomSlider extends BaseSlider {}
 ```
 
-You can additionally specify an output alias in the `outputs` list by putting the alias after a colon in the string:
+2. You can additionally specify an output alias in the `outputs` list by putting the alias after a colon in the string:
 
 ```ts
 // `CustomSlider` inherits the `valueChanged` property from `BaseSlider`.
@@ -1311,9 +1312,9 @@ export class CustomSlider extends BaseSlider {}
 ```
 # Content projection with ng-content
 
-TIP: This guide assumes you've already read the [Essentials Guide](essentials). Read that first if you're new to Angular.
+1. TIP: This guide assumes you've already read the [Essentials Guide](essentials). Read that first if you're new to Angular.
 
-You often need to create components that act as containers for different types of content. For example, you may want to create a custom card component:
+2. You often need to create components that act as containers for different types of content. For example, you may want to create a custom card component:
 
 ```typescript
 @Component({
@@ -1325,7 +1326,7 @@ export class CustomCard {
 }
 ```
 
-**You can use the `<ng-content>` element as a placeholder to mark where content should go**:
+3. **You can use the `<ng-content>` element as a placeholder to mark where content should go**:
 
 ```typescript
 @Component({
@@ -1337,10 +1338,10 @@ export class CustomCard {
 }
 ```
 
-TIP: `<ng-content>` works similarly
+4. TIP: `<ng-content>` works similarly
 to [the native `<slot>` element](https://developer.mozilla.org/docs/Web/HTML/Element/slot), but with some Angular-specific functionality.
 
-When you use a component with `<ng-content>`, any children of the component host element are rendered, or **projected**, at the location of that `<ng-content>`:
+5. When you use a component with `<ng-content>`, any children of the component host element are rendered, or **projected**, at the location of that `<ng-content>`:
 
 ```typescript
 // Component source
@@ -1373,15 +1374,15 @@ export class CustomCard {
 </custom-card>
 ```
 
-Angular refers to any children of a component passed this way as that component's **content**. This is distinct from the component's **view**, which refers to the elements defined in the component's template.
+6. Angular refers to any children of a component passed this way as that component's **content**. This is distinct from the component's **view**, which refers to the elements defined in the component's template.
 
-**The `<ng-content>` element is neither a component nor DOM element**. Instead, it is a special placeholder that tells Angular where to render content. Angular's compiler processes all `<ng-content>` elements at build-time. You cannot insert, remove, or modify `<ng-content>` at run time. You cannot add directives, styles, or arbitrary attributes to `<ng-content>`.
+7. **The `<ng-content>` element is neither a component nor DOM element**. Instead, it is a special placeholder that tells Angular where to render content. Angular's compiler processes all `<ng-content>` elements at build-time. You cannot insert, remove, or modify `<ng-content>` at run time. You cannot add directives, styles, or arbitrary attributes to `<ng-content>`.
 
-IMPORTANT: You should not conditionally include `<ng-content>` with `@if`, `@for`, or `@switch`. Angular always instantiates and creates DOM nodes for content rendered to a `<ng-content>` placeholder, even if that `<ng-content>` placeholder is hidden. For conditional rendering of component content, see [Template fragments](api/core/ng-template).
+8. IMPORTANT: Do not conditionally include `<ng-content>` with `@if`, `@for`, or `@switch`. Angular always instantiates and creates DOM nodes for content rendered to a `<ng-content>` placeholder, even if that `<ng-content>` placeholder is hidden. For conditional rendering of component content, see [Template fragments](api/core/ng-template).
 
 ## Multiple content placeholders
 
-Angular supports projecting multiple different elements into different `<ng-content>` placeholders
+1. Angular supports projecting multiple different elements into different `<ng-content>` placeholders
 based on CSS selector. Expanding the card example from above, you could create two placeholders for
 a card title and a card body by using the `select` attribute:
 
@@ -1440,10 +1441,10 @@ export class App {}
 </custom-card>
 ```
 
-The `<ng-content>` placeholder supports the same CSS selectors
+2. The `<ng-content>` placeholder supports the same CSS selectors
 as [component selectors](guide/components/selectors).
 
-If you include one or more `<ng-content>` placeholders with a `select` attribute and
+3. If you include one or more `<ng-content>` placeholders with a `select` attribute and
 one `<ng-content>` placeholder without a `select` attribute, the latter captures all elements that
 did not match a `select` attribute:
 
@@ -1478,11 +1479,11 @@ did not match a `select` attribute:
 </custom-card>
 ```
 
-If a component does not include an `<ng-content>` placeholder without a `select` attribute, any elements that don't match one of the component's placeholders do not render into the DOM.
+4. If a component does not include an `<ng-content>` placeholder without a `select` attribute, any elements that don't match one of the component's placeholders do not render into the DOM.
 
 ## Fallback content
 
-Angular can show _fallback content_ for a component's `<ng-content>` placeholder if that component doesn't have any matching child content. You can specify fallback content by adding child content to the `<ng-content>` element itself.
+1. Angular can show _fallback content_ for a component's `<ng-content>` placeholder if that component doesn't have any matching child content. You can specify fallback content by adding child content to the `<ng-content>` element itself.
 
 ```html
 <!-- Component template -->
@@ -1514,7 +1515,7 @@ Angular can show _fallback content_ for a component's `<ng-content>` placeholder
 
 ## Aliasing content for projection
 
-Angular supports a special attribute, `ngProjectAs`, that allows you to specify a CSS selector on
+1. Angular supports a special attribute, `ngProjectAs`, that allows you to specify a CSS selector on
 any element. Whenever an element with `ngProjectAs` is checked against an `<ng-content>`
 placeholder, Angular compares against the `ngProjectAs` value instead of the element's identity:
 
@@ -1547,14 +1548,14 @@ placeholder, Angular compares against the `ngProjectAs` value instead of the ele
 </custom-card>
 ```
 
-`ngProjectAs` supports only static values and cannot be bound to dynamic expressions.
+2. `ngProjectAs` supports only static values and cannot be bound to dynamic expressions.
 # Component Lifecycle
 
-TIP: This guide assumes you've already read the [Essentials Guide](essentials). Read that first if you're new to Angular.
+1. TIP: This guide assumes you've already read the [Essentials Guide](essentials). Read that first if you're new to Angular.
 
-A component's **lifecycle** is the sequence of steps that happen between the component's creation and its destruction. Each step represents a different part of Angular's process for rendering components and checking them for updates over time.
+2. A component's **lifecycle** is the sequence of steps that happen between the component's creation and its destruction. Each step represents a different part of Angular's process for rendering components and checking them for updates over time.
 
-In your components, you can implement **lifecycle hooks** to run code during these steps.
+3. In your components, you can implement **lifecycle hooks** to run code during these steps.
 Lifecycle hooks that relate to a specific component instance are implemented as methods on your component class. Lifecycle hooks that relate the Angular application as a whole are implemented as functions that accept a callback.
 
-A component's lifecycle is tightly connected to how Angular checks your components for changes over time. For the purposes of understanding this lifecycle, you only need to know that Angular walks your application tree from top to bottom, checking template bindings for changes. The lifecycle hooks described below run while Angular is doing this traversal. This traversal visits each component exactly once, so you should always avoid making further state changes in the middle of the process.
+4. A component's lifecycle is tightly connected to how Angular checks your components for changes over time. For the purposes of understanding this lifecycle, you only need to know that Angular walks your application tree from top to bottom, checking template bindings for changes. The lifecycle hooks described below run while Angular is doing this traversal. This traversal visits each component exactly once, so you should always not make further state changes in the middle of the process.
