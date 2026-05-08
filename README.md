@@ -1,4 +1,4 @@
-# prompts
+# LLM Development Prompts
 
 An MIT-licensed collection of LLM prompts by [@sjdev](https://sjdev.co), intended for use in bootstrapping new projects or building out new features in existing code bases.
 
@@ -9,6 +9,14 @@ The prompts include language and framework-specific development directives, inte
 For example, the Javascript code styleguide sets forth the simple directive: “[u]se const for all declarations, unless you need to reassign, then use let. Never use var.”  
 
 These prompts are a work in progress.  I add to them as I work on new projects in new languages and frameworks, and I am also still in the process of memorializing prompts relating to languages and frameworks I have used for many years.
+
+# Usage - generally
+
+Imagine adding a new feature to an existing codebase, using LLM code generation.  At the outset, you would run the following prompt (discussed in greater detail below):
+
+Read $TD/prompts/REPO_POLICIES.md and $TD/prompts/EXISTING_REPO_CHECKLIST.md, then bring this repo up to those
+standards. Your scope is repo scaffolding and policy compliance: Makefile, Dockerfile, .dockerignore, .gitignore, .editorconfig, CI
+workflow, README sections, LICENSE, REPO_POLICIES.md, and any language-specific config files (.golangci.yml, .prettierrc, etc.).
 
 ## Quick Start - optional scripts for cli agent
 
