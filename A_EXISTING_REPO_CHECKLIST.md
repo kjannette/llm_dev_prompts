@@ -5,7 +5,7 @@ last_modified: 2026-02-22
 
 Use this checklist when starting work in a repo that may not conform to our repo policies.
 
-Plan first.  Structure work into discreet tasks, according to well-defined acceptance critera. Work on a feature branch for each work item. 
+Plan first. Structure work into discrete tasks, according to well-defined acceptance criteria. Work on a feature branch for each work item. 
 
 **Always check your work** and fix gaps between it and the policies and acceptance creiteria before proceeding with the next task.
 
@@ -32,7 +32,7 @@ Plan first.  Structure work into discreet tasks, according to well-defined accep
 - [ ] Language-specific config:
     - [ ] Go: `go.mod`, `go.sum`, `.golangci.yml` (fetch from
           `https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/.golangci.yml`)
-    - [ ] JS: `package.json`, `yarn.lock`, `.prettierrc`, `.prettierignore`
+    - [ ] JS: `package.json`, `package-lock.json`, `.prettierrc`, `.prettierignore`
           (fetch from
           `https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/.prettierrc` and
           `https://github.com/kjannette/LLM_DEV_PROMPTS/raw/branch/main/.prettierignore`)
@@ -63,7 +63,7 @@ Plan first.  Structure work into discreet tasks, according to well-defined accep
 - [ ] No secrets in the repo (`.env`, keys, credentials)
 - [ ] No mutable references in Dockerfiles or scripts (tags, `@latest`) — all
       pinned by cryptographic hash with version/date comment
-- [ ] Using `yarn`, not `npm` (JS projects)
+- [ ] Using `npm`, not `yarn` (JS projects)
 
 # Directory Structure
 

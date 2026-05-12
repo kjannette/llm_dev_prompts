@@ -108,7 +108,7 @@ style conventions are in separate documents:
 - When pinning images or packages by hash, add a comment above the reference
   with the version and date (YYYY-MM-DD).
 
-- Use `yarn`, not `npm`.
+- Use `npm`, not `yarn`.
 
 - Write all dates as YYYY-MM-DD (ISO 8601).
 
@@ -130,7 +130,7 @@ style conventions are in separate documents:
       left off.
     - **License**: MIT, GPL, or WTFPL. Ask the user for new projects. Include a
       `LICENSE` file in the repo root and a License section in the README.
-    - **Author**: [@sjdev](https://sjdev.co).
+    - **Author**: [@sjDev](https://sjdev.co).
 
 - First commit of a new repo should contain only `README.md`.
 
@@ -179,5 +179,14 @@ style conventions are in separate documents:
     - `Makefile`
     - `Dockerfile`, `.dockerignore`
     - Go: `go.mod`, `go.sum`, `.golangci.yml`
-    - JS: `package.json`, `.prettierrc`, `.prettierignore`
+    - JS: `package.json`, `package-lock.json`, `.prettierrc`, `.prettierignore`
     - Python: `pyproject.toml`
+
+# Author
+
+[@sjDev](https://sjdev.co)
+&lt;[sj@sjdev.co](mailto:sj@sjdev.co)&gt;
+
+# License
+
+MIT. See [LICENSE](LICENSE).

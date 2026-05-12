@@ -6,9 +6,9 @@ last_modified: 2026-02-22
 1. Use `const` for all declarations, unless you need to reassign, then use `let`. Never use
    `var`.
 
-2. Indentation: Use 2 spaces.  Do not use tabs.
+2. Indentation: Use 4 spaces. Do not use tabs.
 
-3. Semicolons shoudl be used at the end of statements.
+3. Semicolons should be used at the end of statements.
 
 4. Quotes: Prefer single quotes for strings, unless working with JSON or needing to separate object strings.
 
@@ -70,6 +70,39 @@ req.on('end', function() {
   console.log('losing');
 });
 ```
+17. React UI Projects:
+
+  a. THIS IS A STRICT DIRECTIVE DO NOT DEVIATE:  Whenever possible, do not 
+     implement “useEffect” in React code.  Developers overuse effects for logic that doesn't need it causing: multiple renders, race conditions, overly complex code and other problems. (Dev note for humans, NOT LLMs:  See https://react.dev/learn/you-might-not-need-an-effect). useEffect alternatives:
+
+    i.  Data Fetching: Use the TanStack Query (React Query) or SWR libraries, 
+        which handle caching, loading states, and race conditions much better than useEffect. Basic example (real-world solutions may be more complex):
+
+        function GetUserProfile() {
+          const { data, isLoading, error } = useQuery({
+            queryKey: ['user', 1],
+            queryFn: async () => {
+              const response = await fetch('https://example.com/v1/users');
+              if (!response.ok) throw new Error('Network error getting user');
+              return response.json();
+            },
+          });
+
+          if (isLoading) return <div>Loading...</div>;
+          if (error) return <div>Error: {error.message}</div>;
+        }
+
+    ii.   Transforming Data (derived state): Instead of useEffect to update a 
+          state variable on props change, calculate values directly in the component body. Wrap expensive calculations in useMemo.
+
+    iii.  Handling User Events: Move logic triggered by user actions (like a 
+          button click or form submission) directly into the corresponding event handler rather than an effect.
+
+    iv.   Resetting State on Prop Changes: Use the key attribute on a component.  
+          When the key changes, React will treat it as a new component, reset its state automatically, and avoid "cleanup" effects.
+
+    v.    External Store Synchronization: If you need to sync with an external 
+          system (like a browser API or a global store), always implement useSyncExternalStore instead of listeners in an effect.
 
 # Author
 

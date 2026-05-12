@@ -46,8 +46,8 @@ standard invocation:
 
 # Author
 
-[@sjdev](https://sjdev.co)
-&lt;[sj@sjdev.co](mailto:sj@sjdev.berlin)&gt;
+[@sjDev](https://sjdev.co)
+&lt;[sj@sjdev.co](mailto:sj@sjdev.co)&gt;
 
 # License
 

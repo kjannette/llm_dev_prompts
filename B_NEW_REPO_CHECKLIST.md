@@ -24,7 +24,7 @@ Template files can be fetched from:
     - [ ] **Design**: how is it structured?
     - [ ] **TODO**: initial task list
     - [ ] **License**: matches chosen license
-    - [ ] **Author**: [@sjdev](https://sjdev.co)
+    - [ ] **Author**: [@sjDev](https://sjdev.co)
 - [ ] `git add README.md && git commit`
 
 # 3. Scaffolding (feature branch)

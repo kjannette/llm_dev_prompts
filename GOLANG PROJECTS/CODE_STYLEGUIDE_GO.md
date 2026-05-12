@@ -17,7 +17,7 @@ last_modified: 2026-02-22
     injection framework.
 
 5.  Embed the git commit hash into the binary and include it in startup logs and
-    in health check output, to aid correlattion of running instances with their
+    in health check output, to aid correlation of running instances with their
     code. Do not include build time or build user, which will make the build 
     nondeterministic.
 
@@ -79,7 +79,7 @@ last_modified: 2026-02-22
     ```
 
 7.  Commit at least a single test file to check compilation. The test file can
-    be empty, but should exist. This ensuress that `go test ./...` will
+    be empty, but should exist. This ensures that `go test ./...` will
     always function as a syntax check.
 
 8.  When fixing a specific bug, write a test that reproduces it, before 
@@ -519,7 +519,7 @@ last_modified: 2026-02-22
 7.  Global state can lead to unpredictable behavior and makes the code harder to
     test. Use dependency injection to manage state.
 
-8.  Avoid using `init` functions unless absolutely necessary. Tthey can lead to
+8.  Avoid using `init` functions unless absolutely necessary. They can lead to
     unpredictable initialization order and make code harder to understand.
 
 9.  Provide comments for all public interfaces explaining what they do and how
@@ -567,8 +567,8 @@ last_modified: 2026-02-22
 
 # Author
 
-[@sjdev](https://sjdev.co)
-&lt;[sj@sjdev.co(mailto:sj@sjdev.berlin)&gt;
+[@sjDev](https://sjdev.co)
+&lt;[sj@sjdev.co](mailto:sj@sjdev.co)&gt;
 
 # License
 

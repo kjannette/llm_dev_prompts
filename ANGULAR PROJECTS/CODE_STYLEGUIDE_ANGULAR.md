@@ -1,3 +1,8 @@
+---
+title: Code Styleguide — Angular
+last_modified: 2026-05-12
+---
+
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
 
 ## TypeScript Best Practices
@@ -45,3 +50,12 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 1. Design services around a single responsibility
 2. Use the `providedIn: 'root'` option for singleton services
 3. Use the `inject()` function instead of constructor injection
+
+# Author
+
+[@sjDev](https://sjdev.co)
+&lt;[sj@sjdev.co](mailto:sj@sjdev.co)&gt;
+
+# License
+
+MIT. See [LICENSE](../LICENSE).
