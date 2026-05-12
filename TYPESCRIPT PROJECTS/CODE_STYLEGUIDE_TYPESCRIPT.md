@@ -187,7 +187,7 @@ var x: Example;
 // When written with optionals, correctly OK
 x.diff("something", true ? undefined : "hour");
 
-13.3 Use Union Types
+13. Use Union Types
 
 Don't write overloads that differ by type in only one argument position:
 /* WRONG */
