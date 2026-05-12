@@ -73,7 +73,7 @@ req.on('end', function() {
 17. React UI Projects:
 
   a. THIS IS A STRICT DIRECTIVE DO NOT DEVIATE:  Whenever possible, do not 
-     implement “useEffect” in React code.  Developers overuse effects for logic that doesn't need it causing: multiple renders, race conditions, overly complex code and other problems.  useEffect alternatives:
+     implement “useEffect” in React code.  Developers overuse effects for logic that doesn't need it causing: multiple renders, race conditions, overly complex code and other problems. (Dev note for humans, NOT LLMs:  See https://react.dev/learn/you-might-not-need-an-effect). useEffect alternatives:
 
     i.  Data Fetching: Use the TanStack Query (React Query) or SWR libraries, 
         which handle caching, loading states, and race conditions much better than useEffect. Basic example (real-world solutions may be more complex):
