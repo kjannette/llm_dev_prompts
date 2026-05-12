@@ -1,3 +1,8 @@
+---
+title: Angular Best Practices
+last_modified: 2026-05-12
+---
+
 ## Introduction
 
 1. This guide covers a range of style conventions for Angular application code. These recommendations
@@ -1559,3 +1564,12 @@ placeholder, Angular compares against the `ngProjectAs` value instead of the ele
 Lifecycle hooks that relate to a specific component instance are implemented as methods on your component class. Lifecycle hooks that relate the Angular application as a whole are implemented as functions that accept a callback.
 
 4. A component's lifecycle is tightly connected to how Angular checks your components for changes over time. For the purposes of understanding this lifecycle, you only need to know that Angular walks your application tree from top to bottom, checking template bindings for changes. The lifecycle hooks described below run while Angular is doing this traversal. This traversal visits each component exactly once, so you should always not make further state changes in the middle of the process.
+
+# Author
+
+[@sjDev](https://sjdev.co)
+&lt;[sj@sjdev.co](mailto:sj@sjdev.co)&gt;
+
+# License
+
+MIT. See [LICENSE](../LICENSE).

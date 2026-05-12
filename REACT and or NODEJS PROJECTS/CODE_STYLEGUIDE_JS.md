@@ -6,9 +6,9 @@ last_modified: 2026-02-22
 1. Use `const` for all declarations, unless you need to reassign, then use `let`. Never use
    `var`.
 
-2. Indentation: Use 2 spaces.  Do not use tabs.
+2. Indentation: Use 4 spaces. Do not use tabs.
 
-3. Semicolons shoudl be used at the end of statements.
+3. Semicolons should be used at the end of statements.
 
 4. Quotes: Prefer single quotes for strings, unless working with JSON or needing to separate object strings.
 

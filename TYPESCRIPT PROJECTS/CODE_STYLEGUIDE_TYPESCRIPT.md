@@ -1,3 +1,8 @@
+---
+title: Code Styleguide — TypeScript
+last_modified: 2026-05-12
+---
+
 1. General Types
 
 Don't ever use the types Number, String, Boolean, Symbol, or Object These types refer to non-primitive boxed objects that are almost never used appropriately in JavaScript code.
@@ -65,7 +70,7 @@ The stricter configuration is mandatory. Otherwise, types will be too permissive
   "forceConsistentCasingInFileNames": true,
   "noImplicitReturns": true,
   "strict": true,
-  "noUnusedLocals": true,
+  "noUnusedLocals": true
 }
 
 The most important one here is the strict flag which actually covers four other flags: noImplicitAny, noImplicitThis, alwaysStrict and strictNullChecks.
@@ -187,7 +192,7 @@ var x: Example;
 // When written with optionals, correctly OK
 x.diff("something", true ? undefined : "hour");
 
-13. Use Union Types
+14. Use Union Types
 
 Don't write overloads that differ by type in only one argument position:
 /* WRONG */
@@ -212,3 +217,12 @@ function fn(x: number | string) {
  // When written with union types, correctly OK
  return moment().utcOffset(x);
 }
+
+# Author
+
+[@sjDev](https://sjdev.co)
+&lt;[sj@sjdev.co](mailto:sj@sjdev.co)&gt;
+
+# License
+
+MIT. See [LICENSE](../LICENSE).
